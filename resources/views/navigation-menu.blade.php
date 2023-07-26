@@ -18,6 +18,16 @@
                     </x-nav-link>
                 </div>
                 @endcan
+
+                @can('work.index')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('work.index') }}" :active="request()->routeIs('work.*')">
+                            Trabajos
+                        </x-nav-link>
+                    </div>
+                @endcan
+
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -93,11 +103,21 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
-                Usuarios
-            </x-responsive-nav-link>
-        </div>
+        @can('user.index')
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
+                    Usuarios
+                </x-responsive-nav-link>
+            </div>
+        @endcan
+
+        @can('work.index')
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link href="{{ route('work.index') }}" :active="request()->routeIs('work.*')">
+                    Trabajos
+                </x-responsive-nav-link>
+            </div>
+        @endcan
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">

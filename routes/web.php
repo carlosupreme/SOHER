@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WorkController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
@@ -11,6 +12,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/usuarios', static function () {
         return view('user.index');
     })->middleware('can:user.index')->name('user.index');
+
+
+    Route::resource('/trabajos', WorkController::class)->except('store', 'destroy', 'update')->names('work');
+
+    Route::get('/asignadas',[WorkController::class, 'assignedIndex'])->middleware('can:work.assigned')->name('work.assigned-index');
+
+    Route::get('/asignadas/{work}',[WorkController::class, 'assignedShow'])->middleware('can:work.assigned')->name('work.assigned-show');
 
     Route::fallback(static function () {
         abort(404);

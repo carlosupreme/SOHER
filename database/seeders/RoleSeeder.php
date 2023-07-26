@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -18,14 +17,21 @@ class RoleSeeder extends Seeder
         $admin = Role::create(['name' => 'admin']);
         $client = Role::create(['name' => 'client']);
 
-        Permission::create(['name' => 'work.index'])->assignRole($worker);
+        // As a Worker i can view a list of works assigned, view each work, and rate my clients i worked with
+        Permission::create(['name' => 'work.assigned'])->assignRole($worker);
+        Permission::create(['name' => 'client.rate'])->assignRole($worker);
 
-        Permission::create(['name' => 'work.show'])->syncRoles([$worker, $client]);
 
+        //As a Client i can create, edit and show a work, view a list of my created works and rate my workers
         Permission::create(['name' => 'work.create'])->assignRole($client);
         Permission::create(['name' => 'work.edit'])->assignRole($client);
         Permission::create(['name' => 'work.myworks'])->assignRole($client);
+        Permission::create(['name' => 'worker.rate'])->assignRole($client);
 
+        Permission::create(['name' => 'work.show'])->syncRoles([$client, $admin]);
+        // As an Admin i can CRUD Users, View a list of all works, assign a worker to a work
+        Permission::create(['name' => 'work.index'])->assignRole($admin);
+        Permission::create(['name' => 'work.assignTo'])->assignRole($admin);
         Permission::create(['name' => 'user.index'])->assignRole($admin);
         Permission::create(['name' => 'user.create'])->assignRole($admin);
         Permission::create(['name' => 'user.edit'])->assignRole($admin);
