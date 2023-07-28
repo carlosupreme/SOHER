@@ -11,7 +11,7 @@
                 <div class="flex gap-x-10">
                     <a href="{{route('work.show', $work->id)}}"
                        class="text-gray-950 dark:text-gray-100 font-bold text-lg hover:underline">{{$work->title}} </a>
-                    <p class="first-letter:uppercase whitespace-nowrap">{{$work->created_at}}</p>
+                    <p class="whitespace-nowrap">Publicado {{$work->created_at}}</p>
                 </div>
                 <div class="flex gap-x-2 items-center">
                     <img class="h-8 w-8 rounded-full object-cover" src="{{ $work->client->profile_photo_url }}"

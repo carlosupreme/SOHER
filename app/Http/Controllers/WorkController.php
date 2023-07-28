@@ -18,6 +18,11 @@ class WorkController extends Controller
 
     public function create()
     {
+        if (\Auth::user()->hasAnyPermission('work.create')) {
+            return view('work.create');
+        }
+
+        abort(404);
     }
 
     public function show(Work $trabajo)

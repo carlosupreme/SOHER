@@ -13,10 +13,13 @@ return new class extends Migration {
         Schema::create('works', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('client_id');
-            $table->string('title', 50);
+            $table->string('title', 70);
             $table->string('location');
             $table->text('description');
             $table->text('skills');
+            $table->decimal('budget')->nullable();
+            $table->date('deadline')->nullable();
+            $table->enum('status',['Abierto', 'Pendiente', 'Archivado', 'Realizado', '']);
             $table->timestamps();
             $table->foreign('client_id')->references('id')->on('users')->cascadeOnUpdate()->restrictOnDelete();
         });
