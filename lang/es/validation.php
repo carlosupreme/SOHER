@@ -213,5 +213,8 @@ return [
         'updated_at'               => 'actualizado el',
         'username'                 => 'nombre de usuario',
         'year'                     => 'año',
+        'location'                 => 'ubicación',
+        'initialBudget'            => 'presupuesto inicial',
+        'finalBudget'              => 'presupuesto final'
     ],
 ];
