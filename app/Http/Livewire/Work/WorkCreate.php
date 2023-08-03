@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire\Work;
 
+use App\Models\Work;
+use App\Work\Domain\Status;
 use Auth;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Storage;
 
 class WorkCreate extends Component
 {
@@ -24,9 +27,12 @@ class WorkCreate extends Component
 
     protected $rules = [
         'title' => 'required|min:10|max:70',
+        'location' => 'required|min:10|max:100',
+        'skills' => 'required',
+        'deadline.*' => 'required',
         'description' => 'required|min:10|max:2000',
-        'initialBudget' => 'required|numeric|min:1',
-        'finalBudget' => 'required|numeric|min:1',
+        'initialBudget' => 'required|numeric|min:1|max_digits:6',
+        'finalBudget' => 'required|numeric|gte:initialBudget|max_digits:6',
         'photo' => 'image|max:204800'
     ];
 
@@ -44,7 +50,36 @@ class WorkCreate extends Component
 
     public function submitForm()
     {
-        $this->validate();
+        $this->validate([
+            'title' => 'required|min:10|max:70',
+            'location' => 'required|min:10|max:100',
+            'skills' => 'required',
+            'deadline.*' => 'required',
+            'description' => 'required|min:10|max:2000',
+            'initialBudget' => 'required|numeric|min:1|max_digits:6',
+            'finalBudget' => 'required|numeric|gte:initialBudget|max_digits:6'
+        ]);
+
+        $work = new Work();
+        $work->title = $this->title;
+        $work->description = $this->description;
+        $work->location = $this->location;
+        try {
+            $work->skills = json_encode($this->skills, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e) {
+            return redirect()->route('work.create')->with(['flash.bannerStyle' => 'danger', 'flash.banner' => $e->getMessage()]);
+        }
+
+        $work->initial_budget = $this->initialBudget;
+        $work->final_budget = $this->finalBudget;
+        $work->deadline = Carbon::create($this->deadline['year'], $this->deadline['month'], $this->deadline['day']);
+        $work->client_id = $this->client_id;
+        $work->photo = $this->photo ? Storage::url($this->photo->store('/public/images')) : null;
+        $work->status = Status::OPEN->value;
+
+        $work->save();
+
+        return redirect()->route('work.create')->with(['flash.bannerStyle' => 'success', 'flash.banner' => 'Trabajo solicitado exitosamente']);
     }
 
     public function updated($property)

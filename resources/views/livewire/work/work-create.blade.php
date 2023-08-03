@@ -9,6 +9,20 @@
                         siguiente
                         apartado</p>
                 </label>
+                {{-- TODO: ADD CHARACTER COUNTER--}}
+                {{--                <div class="w-full flex gap-x-1 items-center rounded-lg px-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300"--}}
+                {{--                    x-data="{ count: 0 }" x-init="count = $refs.title.value.length"--}}
+                {{--                >--}}
+                {{--                    <x-input--}}
+                {{--                        class="flex-grow border-none focus:ring-0"--}}
+                {{--                        name="title" id="title" wire:model="title" type="text"--}}
+                {{--                        placeholder="Ejemplo: Necesito un plomero para reparar fuga de agua en baño"--}}
+                {{--                        maxlength="70"--}}
+                {{--                        x-ref="title"--}}
+                {{--                        @keyup="count = $refs.title.value.length"--}}
+                {{--                    />--}}
+                {{--                    <p class="text-xs text-gray-500" x-text="count + '/' + $refs.title.maxLength"></p>--}}
+                {{--                </div>--}}
 
                 <x-input
                     name="title" id="title" wire:model="title" type="text"
@@ -37,7 +51,8 @@
 
             <div class="flex flex-col">
                 <label for="description" class="mb-4">
-                    <h3 class="text-gray-800 dark:text-gray-200 font-bold text-xl mb-2">Agrega que a categorias pertenece el trabajo</h3>
+                    <h3 class="text-gray-800 dark:text-gray-200 font-bold text-xl mb-2">Agrega que a categorias
+                        pertenece el trabajo</h3>
                     <p class="text-gray-600 dark:text-gray-400">Selecciona al menos una</p>
                 </label>
                 <select name="skills" id="skills" wire:model="skills" multiple size="4"
@@ -145,6 +160,8 @@
                         </select>
                     </div>
                 </div>
+
+                <x-input-error for="deadline.*"/>
             </div>
 
             <div class="flex flex-col">
@@ -181,6 +198,12 @@
                 @endif
 
             </div>
+
+            <button wire:click="submitForm"
+                    class="md:hidden px-4 py-2.5 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:ring-4 focus:ring-green-300">
+                Completar &nbsp; <i class="fa-solid fa-check"></i>
+            </button>
+
         </div>
         <div class="col-span-2 md:gap-y-10 md:flex md:flex-col hidden md:mt-20 relative">
             <h1 class="text-4xl font-bold text-gray-800 dark:text-gray-200 tracking-wide">Empecemos a definir el

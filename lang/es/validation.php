@@ -215,6 +215,9 @@ return [
         'year'                     => 'año',
         'location'                 => 'ubicación',
         'initialBudget'            => 'presupuesto inicial',
-        'finalBudget'              => 'presupuesto final'
+        'finalBudget'              => 'presupuesto final',
+        'deadline.day'             => 'Día',
+        'deadline.month'           => 'Mes',
+        'deadline.year'            => 'Año',
     ],
 ];
