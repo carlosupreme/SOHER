@@ -28,7 +28,7 @@ class WorkController extends Controller
     public function show(Work $trabajo)
     {
         if (\Auth::user()->hasAnyPermission('work.show')) {
-            return $trabajo;
+            return view('work.show', ['work' => $trabajo]);
         }
 
         abort(404);
@@ -37,6 +37,11 @@ class WorkController extends Controller
     public function edit(Work $work)
     {
         //
+    }
+
+    public function assign(Work $work)
+    {
+        return $work;
     }
 
     public function assignedIndex()

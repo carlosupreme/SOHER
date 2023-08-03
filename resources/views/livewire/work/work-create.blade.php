@@ -182,7 +182,7 @@
                         <div wire:loading wire:target="photo">
                             <x-loader/>
                         </div>
-                        <input id="photo" type="file" accept="image/*" class="hidden" wire:model="photo"/>
+                        <input id="photo" type="file" class="hidden" wire:model="photo"/>
                     </label>
                 </div>
 
@@ -212,8 +212,8 @@
                 encontremos al
                 profesional más adecuado</p>
             <img src="{{ asset('assets/img/work-create.svg') }}" alt="Crear trabajo">
-            <button wire:click="submitForm"
-                    class="absolute right-0 -top-20 px-4 py-2.5 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:ring-4 focus:ring-green-300">
+            <button wire:click="submitForm" @disabled($errors->isNotEmpty())
+                    class="disabled:bg-gray-500 absolute right-0 -top-20 px-4 py-2.5 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:ring-4 focus:ring-green-300">
                 Completar &nbsp; <i class="fa-solid fa-check"></i>
             </button>
         </div>

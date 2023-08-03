@@ -23,3 +23,7 @@
     }
 }
 
+[id|="work.show-photo"]:target {
+    opacity: 1;
+    pointer-events: auto;
+}

@@ -20,6 +20,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     Route::get('/asignadas/{work}',[WorkController::class, 'assignedShow'])->middleware('can:work.assigned')->name('work.assigned-show');
 
+    Route::get('/asginar/{work}', [WorkController::class, 'assign'])->middleware('can:work.assign')->name('work.assign');
+
     Route::fallback(static function () {
         abort(404);
     });

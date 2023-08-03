@@ -33,7 +33,7 @@ class WorkCreate extends Component
         'description' => 'required|min:10|max:2000',
         'initialBudget' => 'required|numeric|min:1|max_digits:6',
         'finalBudget' => 'required|numeric|gte:initialBudget|max_digits:6',
-        'photo' => 'image|max:204800'
+        'photo' => 'image'
     ];
 
     public function mount()
@@ -66,8 +66,8 @@ class WorkCreate extends Component
         $work->location = $this->location;
         try {
             $work->skills = json_encode($this->skills, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
-            return redirect()->route('work.create')->with(['flash.bannerStyle' => 'danger', 'flash.banner' => $e->getMessage()]);
+        } catch (\JsonException) {
+            return redirect()->route('work.create')->with(['flash.bannerStyle' => 'danger', 'flash.banner' => 'Selecciona al menos una categoria']);
         }
 
         $work->initial_budget = $this->initialBudget;

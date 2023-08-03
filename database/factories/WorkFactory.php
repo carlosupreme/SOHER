@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Work\Domain\Status;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -10,19 +11,20 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class WorkFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
+        $initial_budget = $this->faker->randomNumber(3);
         return [
-            'title' => $this->faker->realText(50),
-            'description' => $this->faker->paragraph,
-            'location' => $this->faker->address,
             'client_id' => User::first()->id,
-            'skills' => $this->faker->randomElement(['Mecanica', 'Electrica', 'Plomeria', 'Carpinteria', 'Herreria']),
+            'title' => $this->faker->realText(50),
+            'location' => $this->faker->address,
+            'description' => $this->faker->paragraph(5),
+            'skills' => json_encode($this->faker->randomElements(['Mecanica', 'Electrica', 'Plomeria', 'Carpinteria', 'Herreria'], 2)),
+            'initial_budget' => $initial_budget,
+            'final_budget' => $initial_budget + $this->faker->randomNumber(2),
+            'deadline' => $this->faker->date,
+            'status' => $this->faker->randomElement(Status::cases()),
+            'photo' => '/storage/images/' . $this->faker->image('public/storage/images', 640, 480, null, false),
             'created_at' => $this->faker->dateTime
         ];
     }

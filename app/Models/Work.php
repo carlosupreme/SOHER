@@ -12,6 +12,14 @@ class Work extends Model
 {
     use HasFactory;
 
+    public function skills(): Attribute
+    {
+        return Attribute::make(
+          get: static fn(string $value) => array_map(static fn($el)=> ucfirst($el), json_decode($value))
+        );
+    }
+
+
     public function createdAt(): Attribute
     {
         return Attribute::make(

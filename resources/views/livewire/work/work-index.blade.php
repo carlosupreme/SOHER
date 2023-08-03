@@ -16,12 +16,17 @@
                 <div class="flex gap-x-2 items-center">
                     <img class="h-8 w-8 rounded-full object-cover" src="{{ $work->client->profile_photo_url }}"
                          alt="{{ $work->client->name}}"/>
-                    <a href="{{'#gotoClientShow'. $work->client->id}}" class="dark:text-gray-200 hover:underline">{{$work->client->name}}</a>
+                    <a href="{{'#gotoClientShow'. $work->client->id}}"
+                       class="dark:text-gray-200 hover:underline">{{$work->client->name}}</a>
                 </div>
                 <div class="border-t border-gray-200 dark:border-gray-600"></div>
                 <p>{{$work->description}}</p>
 
-                <span class="dark:text-gray-700 bg-blue-100 mr-auto py-1 px-4 rounded-full">{{$work->skills}}</span>
+                <div class="flex gap-x-2 justify-items-start">
+                    @foreach($work->skills as $skill)
+                        <span class="dark:text-gray-700 bg-blue-100 py-1 px-4 rounded-full">{{$skill}}</span>
+                    @endforeach
+                </div>
             </div>
         @endforeach
 

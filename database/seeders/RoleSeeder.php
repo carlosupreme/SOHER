@@ -31,7 +31,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'work.show'])->syncRoles([$client, $admin]);
         // As an Admin i can CRUD Users, View a list of all works, assign a worker to a work
         Permission::create(['name' => 'work.index'])->assignRole($admin);
-        Permission::create(['name' => 'work.assignTo'])->assignRole($admin);
+        Permission::create(['name' => 'work.assign'])->assignRole($admin);
         Permission::create(['name' => 'user.index'])->assignRole($admin);
         Permission::create(['name' => 'user.create'])->assignRole($admin);
         Permission::create(['name' => 'user.edit'])->assignRole($admin);
