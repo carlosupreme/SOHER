@@ -14,3 +14,5 @@ Breadcrumbs::for('work', static fn(BreadcrumbTrail $trail, $work) => $trail
     ->parent('works')
     ->push('Trabajo #' . $work->id, route('work.show', $work->id))
 );
+
+Breadcrumbs::for('users', static fn(BreadcrumbTrail $trail) => $trail->parent('home')->push('Usuarios', route('user.index')));
