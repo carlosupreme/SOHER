@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         User::factory()->create()->syncRoles(Role::pluck('id')->toArray());
-        Work::factory(5)->create();
+        Work::factory(11)->create();
     }
 }

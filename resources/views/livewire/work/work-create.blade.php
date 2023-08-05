@@ -1,6 +1,6 @@
 <div class="py-6 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 md:grid md:grid-cols-5 md:gap-x-16 flex w-full">
-        <div class="col-span-3 flex flex-col gap-y-5 px-10 md:px-2 md:h-[40rem] md:overflow-y-scroll no-scrollbar">
+        <div class="col-span-3 flex flex-col gap-y-5 px-4 sm:px-10 md:px-2 md:h-[40rem] md:overflow-y-scroll no-scrollbar">
             <div class="flex flex-col">
                 <label for="title" class="mb-4">
                     <h3 class="text-gray-800 dark:text-gray-200 font-bold text-xl mb-2">Escribe el título de tu
