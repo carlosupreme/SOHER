@@ -1,6 +1,10 @@
-<div class="py-6 bg-white dark:bg-gray-900">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 md:grid md:grid-cols-5 md:gap-x-16 flex w-full">
-        <div class="col-span-3 flex flex-col gap-y-5 px-4 sm:px-10 md:px-2 md:h-[40rem] md:overflow-y-scroll no-scrollbar">
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="mb-4 sm:mt-4">
+        {{Breadcrumbs::render('work.create') }}
+    </div>
+
+    <div class="md:grid md:grid-cols-5 md:gap-x-16 flex w-full">
+        <div class="col-span-3 flex flex-col gap-y-5 px-4 md:h-[36rem] md:overflow-y-scroll no-scrollbar pb-6">
             <div class="flex flex-col">
                 <label for="title" class="mb-4">
                     <h3 class="text-gray-800 dark:text-gray-200 font-bold text-xl mb-2">Escribe el título de tu
@@ -189,7 +193,7 @@
                 @if($photo && !$errors->has('photo'))
                     <div class="relative">
                         <button wire:click="$set('photo', '')"
-                                class="absolute top-5 right-5 bg-pink-400 text-white hover:bg-pink-700 focus:ring-4 focus:ring-pink-300 rounded-lg px-4 py-2">
+                                class="absolute top-2 left-0 bg-pink-400 text-white hover:bg-pink-700 focus:ring-4 focus:ring-pink-300 rounded-tl-lg px-4 py-2">
                             <i class="fa-solid fa-trash"></i> &nbsp; Eliminar
                         </button>
                         <img class="my-2 rounded-lg" src="{{$photo->temporaryUrl()}}"
@@ -199,8 +203,8 @@
 
             </div>
 
-            <button wire:click="submitForm"
-                    class="md:hidden px-4 py-2.5 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:ring-4 focus:ring-green-300">
+            <button wire:click="submitForm" @disabled($errors->isNotEmpty())
+            class="disabled:bg-gray-500 disabled:cursor-not-allowed md:hidden px-4 py-2.5 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:ring-4 focus:ring-green-300">
                 Completar &nbsp; <i class="fa-solid fa-check"></i>
             </button>
 
@@ -213,11 +217,9 @@
                 profesional más adecuado</p>
             <img src="{{ asset('assets/img/work-create.svg') }}" alt="Crear trabajo">
             <button wire:click="submitForm" @disabled($errors->isNotEmpty())
-                    class="disabled:bg-gray-500 absolute right-0 -top-20 px-4 py-2.5 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:ring-4 focus:ring-green-300">
+            class="disabled:bg-gray-500 disabled:cursor-not-allowed absolute right-0 -top-20 px-4 py-2.5 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:ring-4 focus:ring-green-300">
                 Completar &nbsp; <i class="fa-solid fa-check"></i>
             </button>
         </div>
     </div>
-
-
 </div>

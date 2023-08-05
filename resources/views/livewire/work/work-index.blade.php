@@ -1,10 +1,12 @@
-<div class="py-6">
-    <div class="max-w-7xl mx-auto sm:px-6 px-2 lg:px-8 flex flex-col gap-y-4">
-        <div class="flex gap-5 flex-col md:flex-row md:items-center md:justify-between">
-            <x-input class="flex-grow" placeholder="Buscar..." type="search" name="search" wire:model="search"/>
-            {{ $works->links() }}
-        </div>
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-y-4 sm:mt-4">
+    {{Breadcrumbs::render('works')}}
 
+    <div class="flex gap-5 flex-col md:flex-row md:items-center md:justify-between px-4 sm:px-0">
+        <x-input class="flex-grow" placeholder="Buscar..." type="search" name="search" wire:model="search"/>
+        {{ $works->links() }}
+    </div>
+
+    <div class="flex flex-col lg:grid lg:grid-cols-2 gap-4 px-4 sm:px-0">
         @forelse($works as $work)
             <div
                 class="text-gray-800 dark:text-gray-400 leading-relaxed text-justify bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent p-4 rounded-lg shadow-md flex flex-col gap-y-5">
@@ -29,7 +31,7 @@
                 </div>
             </div>
         @empty
-            <div class="flex flex-col gap-y-2 items-center overflow-hidden justify-center">
+            <div class="flex flex-col gap-y-2 lg:col-span-2 items-center overflow-hidden justify-center">
                 <img class="h-56" src="{{asset('assets/img/work-not-found.svg')}}" alt="Empty">
                 <div>
                     <p class="text-center text-gray-800 dark:text-gray-200 font-bold">No hay elementos</p>
@@ -38,8 +40,7 @@
                     @endif
                 </div>
             </div>
-
         @endforelse
-
     </div>
+
 </div>

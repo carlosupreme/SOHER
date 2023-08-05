@@ -1,6 +1,6 @@
 <div>
     <button wire:click="$set('open', true)"
-            class="px-4 py-2.5 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">
+            class="w-full px-4 py-2.5 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">
         <i class="fa-solid fa-plus"></i> &nbsp; Agregar usuario
     </button>
     <x-dialog-modal wire:model="open">
