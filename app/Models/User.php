@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use NumberFormatter;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -64,5 +66,22 @@ class User extends Authenticatable
     public function works(): HasMany
     {
         return $this->hasMany(Work::class, 'client_id', 'id');
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function rating()
+    {
+        $rate = 0;
+        foreach ($this->reviews()->get() as $review) {
+            $rate += floatval($review->rating);
+        }
+
+        if ($rate === 0) return 0;
+
+        return number_format($rate / $this->reviews()->count(), 1);
     }
 }
