@@ -1,25 +1,32 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\WorkController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/', static fn () => view('dashboard'))->name('dashboard');
+    Route::get('/', static fn() => view('dashboard'))->name('dashboard');
 
     Route::get(
         '/usuarios',
-        static fn () => view('user.index')
+        static fn() => view('user.index')
     )->middleware('can:user.index')->name('user.index');
 
+    Route::get('/usuarios', static function () {
+        return view('user.index');
+    })->middleware('can:user.index')->name('user.index');
 
     Route::get(
         '/usuarios/{user}',
-        static fn ($user) => view('user.show', ['user' => User::findOrFail($user)])
+        static fn($user) => view('user.show', ['user' => User::findOrFail($user)])
     )->middleware('can:user.index')->name('user.show');
 
     Route::resource('/trabajos', WorkController::class)->except('store', 'destroy', 'update')->names('work');
 
+    Route::get('/mis-trabajos', [WorkController::class, 'myworks'])->middleware('can:work.myworks')->name('work.myworks');
+
+    Route::get('/asignadas', [WorkController::class, 'assignedIndex'])->middleware('can:work.assigned')->name('work.assigned-index');
     Route::get('/asignadas', [WorkController::class, 'assignedIndex'])->middleware('can:work.assigned')->name('work.assigned-index');
 
     Route::get('/asignadas/{work}', [WorkController::class, 'assignedShow'])->middleware('can:work.assigned')->name('work.assigned-show');

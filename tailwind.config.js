@@ -9,6 +9,8 @@ export default {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './app/Http/Controllers/DashboardController.php',
+        './app/Work/Domain/Status.php'
     ],
 
     theme: {

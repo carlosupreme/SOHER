@@ -1,3 +1,3 @@
 <x-app-layout>
-    @livewire('work.work-index')
+  @livewire('work.work-index')
 </x-app-layout>

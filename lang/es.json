@@ -193,5 +193,11 @@
     "Welcome": "Bienvenido",
     "worker": "Trabajador",
     "admin": "Administrador",
-    "client": "Cliente"
+    "client": "Cliente",
+    "progress": "en proceso",
+    "open": "abierto",
+    "blocked": "bloqueado",
+    "archived": "archivado",
+    "closed": "cerrado",
+    "finished": "finalizado"
 }

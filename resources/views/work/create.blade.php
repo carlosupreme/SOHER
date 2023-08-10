@@ -1,3 +1,3 @@
 <x-app-layout>
-   @livewire('work.work-create')
+  @livewire('work.work-create')
 </x-app-layout>

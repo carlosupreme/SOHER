@@ -1,5 +1,5 @@
 <x-app-layout>
 
-@livewire('user-index')
+  @livewire('user-index')
 
 </x-app-layout>

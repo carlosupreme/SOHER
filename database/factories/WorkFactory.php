@@ -15,7 +15,7 @@ class WorkFactory extends Factory
     {
         $initial_budget = $this->faker->randomNumber(3);
         return [
-            'client_id' => User::first()->id,
+            'client_id' => User::all('id')->random()->id,
             'title' => $this->faker->realText(50),
             'location' => $this->faker->address,
             'description' => $this->faker->paragraph(5),
