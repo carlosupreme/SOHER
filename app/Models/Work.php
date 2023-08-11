@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Work extends Model
 {
@@ -27,13 +26,8 @@ class Work extends Model
     );
   }
 
-  public function review(): HasOne
-  {
-    return $this->hasOne(WorkReview::class, 'work_id', 'id');
-  }
-
   public function client(): BelongsTo
   {
-    return $this->belongsTo(User::class);
+    return $this->belongsTo(User::class, 'client_id', 'id');
   }
 }

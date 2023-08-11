@@ -1,6 +1,6 @@
 @php use App\Work\Domain\Status; @endphp
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-y-4 sm:mt-4">
-  {{Breadcrumbs::render('works')}}
+  {{Breadcrumbs::render('my-works')}}
 
   <div class="flex gap-5 flex-col md:flex-row md:items-center md:justify-between px-4 sm:px-0">
     <x-input class="flex-grow" placeholder="Buscar..." type="search" name="search" wire:model="search"/>
@@ -10,10 +10,9 @@
         <option class="capitalize" value="{{$statusCode->value}}"> {{__($statusCode->value)}}</option>
       @endforeach
     </select>
-    {{ $works->links() }}
   </div>
 
-  <div class="flex flex-col lg:grid lg:grid-cols-2 gap-4 px-4 sm:px-0">
+  <div class="flex flex-col lg:grid lg:grid-cols-2 gap-4 px-4 sm:px-0 mb-4 sm:mb-0">
     @forelse($works as $work)
       <div
         class="text-gray-800 dark:text-gray-400 leading-relaxed text-justify bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent p-4 rounded-lg shadow-md flex flex-col gap-y-5">

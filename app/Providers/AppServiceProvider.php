@@ -29,5 +29,12 @@ class AppServiceProvider extends ServiceProvider
                 $this->orWhere($field, 'like', '%' . $value . '%');
             }
         });
+
+        Builder::macro('matchingStrict', function ($value, ...$fields) {
+            foreach ($fields as $field) {
+                $this->where($field, 'like', '%' . $value . '%');
+            }
+        });
+
     }
 }

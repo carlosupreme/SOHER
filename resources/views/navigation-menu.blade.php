@@ -21,7 +21,7 @@
 
         @can('work.index')
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-            <x-nav-link href="{{ route('work.index') }}" :active="request()->routeIs('work.*')">
+            <x-nav-link href="{{ route('work.index') }}" :active="request()->routeIs('work.index')">
               Trabajos
             </x-nav-link>
           </div>
@@ -30,8 +30,8 @@
 
         @can('work.myworks')
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-            <x-nav-link href="{{ route('work.myworks') }}" :active="request()->routeIs('work.*')">
-              Trabajos
+            <x-nav-link href="{{ route('work.myworks') }}" :active="request()->routeIs('work.myworks')">
+              Mis trabajos
             </x-nav-link>
           </div>
         @endcan
@@ -129,7 +129,7 @@
 
     @can('work.index')
       <div class="pt-2 pb-3 space-y-1">
-        <x-responsive-nav-link href="{{ route('work.index') }}" :active="request()->routeIs('work.*')">
+        <x-responsive-nav-link href="{{ route('work.index') }}" :active="request()->routeIs('work.index')">
           Trabajos
         </x-responsive-nav-link>
       </div>
@@ -137,8 +137,8 @@
 
     @can('work.myworks')
       <div class="pt-2 pb-3 space-y-1">
-        <x-responsive-nav-link href="{{ route('work.myworks') }}" :active="request()->routeIs('work.*')">
-          Trabajos
+        <x-responsive-nav-link href="{{ route('work.myworks') }}" :active="request()->routeIs('work.myworks')">
+          Mis trabajos
         </x-responsive-nav-link>
       </div>
     @endcan

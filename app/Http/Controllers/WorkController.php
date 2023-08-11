@@ -42,7 +42,7 @@ class WorkController extends Controller
 
     public function myworks()
     {
-        return view('work.index');
+        return view('work.myworks');
     }
 
     public function assign(Work $work)

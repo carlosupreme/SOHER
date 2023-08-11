@@ -3,10 +3,11 @@
 namespace App\Http\Livewire\Work;
 
 use App\Models\Work;
+use Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class WorkIndex extends Component
+class WorkMyworks extends Component
 {
     use WithPagination;
 
@@ -25,12 +26,11 @@ class WorkIndex extends Component
 
     public function render()
     {
-        $works = Work::matching($this->search, 'title', 'description', 'skills')
-            ->matching($this->status, 'status')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $works = Work::whereClientId(Auth::id())
+            ->matchingStrict($this->search, 'title')
+            ->matchingStrict($this->status, 'status')
+            ->get();
 
-        return view('livewire.work.work-index', compact('works'));
-
+        return view('livewire.work.work-myworks', compact('works'));
     }
 }
