@@ -117,8 +117,8 @@
 
       <div class="flex flex-col">
         <label for="deadline">
-          <h3 class="text-gray-800 dark:text-gray-200 font-bold text-xl mb-4">¿Para cuándo necesitas el
-            servicio?</h3>
+          <h3 class="text-gray-800 dark:text-gray-200 font-bold text-xl mb-4">¿Cuándo estás disponible para recibir al
+            trabajador?</h3>
         </label>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 ">
           <div class="flex flex-col">

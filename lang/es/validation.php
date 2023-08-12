@@ -184,7 +184,7 @@ return [
         'number'                   => 'número',
         'password'                 => 'contraseña',
         'password_confirmation'    => 'confirmación de la contraseña',
-        'phone'                    => 'teléfono',
+        'phone'                    => 'celular',
         'photo'                    => 'foto',
         'postal_code'              => 'código postal',
         'price'                    => 'precio',

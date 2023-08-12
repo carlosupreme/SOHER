@@ -79,12 +79,7 @@ class WorkCreate extends Component
 
         $work->save();
 
-        return redirect()->route('work.create')->with(['flash.bannerStyle' => 'success', 'flash.banner' => 'Trabajo solicitado exitosamente']);
-    }
-
-    public function updated($property)
-    {
-        $this->validateOnly($property);
+        return redirect()->route('dashboard')->with(['flash.bannerStyle' => 'success', 'flash.banner' => 'Trabajo solicitado exitosamente']);
     }
 
     public function render()

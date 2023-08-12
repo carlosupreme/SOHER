@@ -10,7 +10,12 @@
   <div class="flex flex-col gap-4 px-4 sm:grid sm:grid-cols-2 sm:px-0 md:grid-cols-3 lg:grid-cols-4">
     @foreach ($users as $user)
       <div
-        class="group w-full rounded-lg border border-gray-200 bg-white shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+        @class([
+        'group w-full rounded-lg border border-gray-200 bg-white shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700',
+        'relative ' => Auth::id() === $user->id])>
+        @if(Auth::id() === $user->id )
+          <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-green-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">Tú</div>
+        @endif
         <div class="flex flex-col items-center py-10">
           <img class="mb-3 aspect-square h-24 w-24 rounded-full object-cover shadow-lg"
                src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}"/>

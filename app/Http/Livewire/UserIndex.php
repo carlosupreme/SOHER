@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Actions\Jetstream\DeleteUser;
 use App\Models\User;
 use Livewire\Component;
 
@@ -26,9 +27,7 @@ class UserIndex extends Component
     public function deleteUser($id)
     {
         $user = User::findOrFail($id);
-        $user->deleteProfilePhoto();
-        $user->tokens->each->delete();
-        $user->delete();
+        (new DeleteUser())->delete($user);
         $this->emit('actionCompleted');
 
         return redirect()->route('user.index')->with('flash.banner', 'Usuario eliminado');
