@@ -13,7 +13,7 @@ return new class extends Migration {
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('client_id');
+            $table->unsignedBigInteger('client_id')->nullable();
             $table->string('title', 70);
             $table->string('location');
             $table->text('description');
@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->enum('status',array_column(Status::cases(), 'value'));
             $table->string('photo')->nullable();
             $table->timestamps();
-            $table->foreign('client_id')->references('id')->on('users')->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreign('client_id')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 
