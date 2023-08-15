@@ -13,6 +13,7 @@ class DeleteModal extends Component
     public $action;
     public $title;
     public $content;
+    public $actionName;
 
     protected $listeners = ['selectItem', 'actionCompleted'];
 

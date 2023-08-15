@@ -12,6 +12,9 @@ class WorkShow extends Component
     public $clientRate;
     public $fechaSolicitada;
 
+    protected $listeners = ['blockWork'];
+
+
     public function mount($work)
     {
         $this->clientRate = 4.9;
@@ -30,6 +33,12 @@ class WorkShow extends Component
         $this->work->status = Status::OPEN->value;
         $this->work->save();
         return redirect()->route('work.show', $this->work->id)->with(['flash.bannerStyle' => 'success', 'flash.banner' => 'Solicitud abierta exitosamente']);
+    }
+
+    public function blockWork(){
+        $this->work->status = Status::BLOCKED->value;
+        $this->work->save();
+        $this->emit('actionCompleted');
     }
 
     public function render()
