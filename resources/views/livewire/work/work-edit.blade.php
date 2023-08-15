@@ -1,6 +1,6 @@
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
   <div class="mb-4 sm:mt-4">
-    {{Breadcrumbs::render('work.create') }}
+    {{Breadcrumbs::render('work.edit', $work) }}
   </div>
 
   <div class="md:grid md:grid-cols-5 md:gap-x-16 flex w-full">
@@ -164,28 +164,35 @@
         <div class="flex items-center justify-center w-full">
           <label for="photo"
                  class="flex items-center justify-center w-full h-10 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-            <p wire:loading.remove wire:target="photo"
+            <p wire:loading.remove wire:target="newPhoto"
                class="text-sm text-gray-500 dark:text-gray-400">Click aqui para <strong
                 class="font-extrabold">{{$photo? ' cambiar la ' : ' subir una '}}</strong> foto
               &nbsp; <i class="fa-solid fa-paperclip"></i></p>
-            <div wire:loading wire:target="photo">
+            <div wire:loading wire:target="newPhoto">
               <x-loader/>
             </div>
-            <input id="photo" type="file" class="hidden" wire:model="photo"/>
+            <input id="photo" type="file" class="hidden" wire:model="newPhoto"/>
           </label>
         </div>
 
-        @if($photo && !$errors->has('photo'))
+        @if($newPhoto && !$errors->has('newPhoto'))
+          <div class="relative">
+            <button wire:click="$set('newPhoto', '')"
+                    class="absolute top-2 left-0 bg-pink-400 text-white hover:bg-pink-700 focus:ring-4 focus:ring-pink-300 rounded-tl-lg px-4 py-2">
+              <i class="fa-solid fa-trash"></i> &nbsp; Eliminar
+            </button>
+            <img class="my-2 rounded-lg" src="{{$newPhoto->temporaryUrl()}}"
+                 alt="{{$newPhoto->getClientOriginalName()}}" id="photoPreview">
+          </div>
+        @elseif($photo)
           <div class="relative">
             <button wire:click="$set('photo', '')"
                     class="absolute top-2 left-0 bg-pink-400 text-white hover:bg-pink-700 focus:ring-4 focus:ring-pink-300 rounded-tl-lg px-4 py-2">
               <i class="fa-solid fa-trash"></i> &nbsp; Eliminar
             </button>
-            <img class="my-2 rounded-lg" src="{{$photo->temporaryUrl()}}"
-                 alt="{{$photo->getClientOriginalName()}}" id="photoPreview">
+            <img class="my-2 rounded-lg" src="{{$photo}}" alt="{{$work->title}}">
           </div>
         @endif
-
       </div>
 
       <button wire:click="submitForm"

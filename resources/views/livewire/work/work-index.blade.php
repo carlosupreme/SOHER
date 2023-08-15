@@ -32,8 +32,8 @@
         <p>{{$work->description}}</p>
 
         <div class="flex gap-2 justify-items-start flex-wrap">
-          @foreach($work->skills as $skill)
-            <span class="dark:text-gray-700 bg-blue-100 py-1 px-4 rounded-full">{{$skill}}</span>
+          @foreach(json_decode($work->skills) as $skill)
+            <span class="dark:text-gray-700 bg-blue-100 py-1 px-4 rounded-full first-letter:uppercase">{{$skill}}</span>
           @endforeach
         </div>
       </div>

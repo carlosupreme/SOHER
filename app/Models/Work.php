@@ -12,12 +12,9 @@ class Work extends Model
 {
   use HasFactory;
 
-  public function skills(): Attribute
-  {
-    return Attribute::make(
-      get: static fn (string $value) => array_map(static fn ($el) => ucfirst($el), json_decode($value))
-    );
-  }
+  protected $casts = [
+      'deadline' => 'date'
+  ];
 
   public function createdAt(): Attribute
   {

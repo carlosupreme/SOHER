@@ -35,9 +35,13 @@ class WorkController extends Controller
         abort(404);
     }
 
-    public function edit(Work $work)
+    public function edit(Work $trabajo)
     {
-        //
+        if (Auth::user()->can('work.edit')) {
+            return view('work.edit', ['work' => $trabajo]);
+        }
+
+        abort(404);
     }
 
     public function myworks()

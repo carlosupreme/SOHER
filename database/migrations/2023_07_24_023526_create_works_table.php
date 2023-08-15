@@ -18,8 +18,8 @@ return new class extends Migration {
             $table->string('location');
             $table->text('description');
             $table->text('skills');
-            $table->decimal('initial_budget')->nullable();
-            $table->decimal('final_budget')->nullable();
+            $table->integer('initial_budget')->nullable();
+            $table->integer('final_budget')->nullable();
             $table->date('deadline')->nullable();
             $table->enum('status',array_column(Status::cases(), 'value'));
             $table->string('photo')->nullable();

@@ -33,6 +33,7 @@ Breadcrumbs::for('my-work', static fn(BreadcrumbTrail $trail, $work) => $trail
 
 
 Breadcrumbs::for('work.create', static fn(BreadcrumbTrail $trail) => $trail->parent('home')->push('Solicitar', route('work.create')));
+Breadcrumbs::for('work.edit', static fn(BreadcrumbTrail $trail, $work) => $trail->parent('my-work', $work)->push('Editar solicitud', route('work.edit', $work)));
 
 Breadcrumbs::for('users', static fn (BreadcrumbTrail $trail) => $trail->parent('home')->push('Usuarios', route('user.index')));
 
