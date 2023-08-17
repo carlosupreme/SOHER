@@ -21,7 +21,7 @@
             <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                  fill="currentColor" viewBox="0 0 22 20">
               <path
-                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
             </svg>
             <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{$clientRate}}</p>
           </div>
@@ -31,12 +31,13 @@
              alt="{{$work->client->name}}">
       </div>
 
-      <div class="flex items-center gap-x-2">
-        <i class="fa-solid fa-location-dot text-red-500"></i>
-        <h2 class="text-gray-700 dark:text-gray-300">{{$work->location}}</h2>
+      <div class="flex gap-2 flex-col sm:flex-row">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-location-dot text-red-500"></i>
+          <h2 class="text-gray-700 dark:text-gray-300">{{$work->location}}</h2>
+        </div>
+        <p class="ml-auto text-sm text-gray-500">{{$work->created_at}}</p>
       </div>
-
-      <p class="ml-auto text-sm text-gray-500">{{$work->created_at}}</p>
 
       <div class="border-t border-gray-200 dark:border-gray-700"></div>
 
@@ -67,8 +68,8 @@
               </svg>
             </a>
             <img
-              class="w-full select-none max-h-screen sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-7xl"
-              src="{{$work->photo}}" alt="Trabajo 1">
+                    class="w-full select-none max-h-screen sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-7xl"
+                    src="{{$work->photo}}" alt="Trabajo 1">
           </div>
         </article>
       @endif
@@ -78,14 +79,14 @@
 
         @if($work->initial_budget === $work->final_budget)
           <span class="bg-green-500 text-white px-2.5 py-1 rounded-lg shadow-sm"><i
-              class="fa-solid fa-dollar-sign"></i> &nbsp; {{$work->initial_budget}}</span>
+                    class="fa-solid fa-dollar-sign"></i> &nbsp; {{$work->initial_budget}}</span>
         @else
           <p class="text-gray-700 dark:text-gray-400">De</p>
           <span class="bg-green-500 text-white px-2.5 py-1 rounded-lg shadow-sm"><i
-              class="fa-solid fa-dollar-sign"></i> &nbsp; {{$work->initial_budget}}</span>
+                    class="fa-solid fa-dollar-sign"></i> &nbsp; {{$work->initial_budget}}</span>
           <p class="text-gray-700 dark:text-gray-400">a</p>
           <span class="bg-green-500 text-white px-2.5 py-1 rounded-lg shadow-sm"><i
-              class="fa-solid fa-dollar-sign"></i> &nbsp; {{$work->final_budget}}</span>
+                    class="fa-solid fa-dollar-sign"></i> &nbsp; {{$work->final_budget}}</span>
         @endif
       </div>
 
@@ -116,7 +117,8 @@
                      x-transition:leave="transition ease-in duration-200 transform"
                      x-transition:leave-start="opacity-100"
                      x-transition:leave-end="opacity-0"
-                     class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"
+                     class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40"
+                     aria-hidden="true"
                 ></div>
 
                 <div x-cloak x-show="modalOpen"
@@ -129,11 +131,13 @@
                      class="inline-block  bg-white dark:bg-gray-800 w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform rounded-lg shadow-xl 2xl:max-w-2xl"
                 >
                   <div class="flex items-center justify-between space-x-4">
-                    <h1 class="text-xl font-medium text-gray-800 dark:text-gray-200">Archivar solicitud del trabajo</h1>
+                    <h1 class="text-xl font-medium text-gray-800 dark:text-gray-200">Archivar
+                      solicitud del trabajo</h1>
 
                     <button @click="modalOpen = false"
                             class="text-gray-600 focus:outline-none hover:text-gray-700 dark:hover:text-gray-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                           viewBox="0 0 24 24"
                            stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -142,7 +146,8 @@
                   </div>
 
                   <p class="mt-2 text-gray-500">
-                    Esto cancelará todo proceso de selección de profesional, si quieres puedes volver a solicitarla
+                    Esto cancelará todo proceso de selección de profesional, si quieres puedes
+                    volver a solicitarla
                   </p>
 
                   <div class="flex justify-end mt-6">
@@ -189,7 +194,8 @@
 
       </div>
       @if($work->status === Status::OPEN->value && $user->id === $work->client_id)
-        <small class="text-gray-500"> <i class="fa-solid fa-info"></i> &nbsp; Para editar la solicitud debes archivarla
+        <small class="text-gray-500"> <i class="fa-solid fa-info"></i> &nbsp; Para editar la solicitud debes
+          archivarla
           primero</small>
       @endif
     </div>

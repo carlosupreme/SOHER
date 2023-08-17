@@ -6,19 +6,22 @@
     <x-slot name="content">
       <div class="grid grid-cols-2 gap-4">
         <div class="col-span-2 md:col-span-1">
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2" for="nombre">Nombre</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
+                 for="nombre">Nombre</label>
           <x-input class="w-full" wire:model="nombre" type="text" name="nombre" id="nombre"/>
           <x-input-error for="nombre"/>
         </div>
 
         <div class="col-span-2 md:col-span-1">
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2" for="correo">Correo</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
+                 for="correo">Correo</label>
           <x-input class="w-full" wire:model="correo" type="text" name="correo" id="correo"/>
           <x-input-error for="correo"/>
         </div>
 
         <div class="col-span-2">
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2" for="role">Roles</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
+                 for="role">Roles</label>
           <div class="flex flex-wrap gap-8 w-full mt-1">
             @foreach($rolesOptions as $role)
               <label class="block text-sm font-medium text-gray-700" for="{{$role['id']}}">

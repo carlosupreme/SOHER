@@ -10,13 +10,15 @@
     <x-slot name="content">
       <div class="grid grid-cols-2 gap-4">
         <div class="col-span-2 md:col-span-1">
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2" for="username">Nombre</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
+                 for="username">Nombre</label>
           <x-input class="w-full" wire:model="username" type="text" name="username" id="username"/>
           <x-input-error for="username"/>
         </div>
 
         <div class="col-span-2 md:col-span-1">
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2" for="email">Correo</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
+                 for="email">Correo</label>
           <x-input class="w-full" wire:model="email" type="text" name="email" id="email"/>
           <x-input-error for="email"/>
         </div>
@@ -29,7 +31,8 @@
         </div>
 
         <div class="col-span-2 md:col-span-1">
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2" for="password_confirmation">Confirmar
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
+                 for="password_confirmation">Confirmar
             Contraseña</label>
           <x-input class="w-full" wire:model="password_confirmation" type="text" name="password_confirmation"
                    id="password_confirmation"/>
@@ -37,7 +40,8 @@
         </div>
 
         <div class="col-span-2">
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2" for="role">Roles</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
+                 for="role">Roles</label>
           <div class="flex flex-wrap gap-8 w-full mt-1">
             @foreach($rolesOptions as $role)
               <label class="block text-sm font-medium text-gray-700" for="{{$role['id']}}">

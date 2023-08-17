@@ -26,7 +26,8 @@
 
         <div class="mt-4" x-cloak x-show="recovery">
           <x-label for="recovery_code" value="{{ __('Recovery Code') }}"/>
-          <x-input id="recovery_code" class="block mt-1 w-full" type="text" name="recovery_code" x-ref="recovery_code"
+          <x-input id="recovery_code" class="block mt-1 w-full" type="text" name="recovery_code"
+                   x-ref="recovery_code"
                    autocomplete="one-time-code"/>
         </div>
 

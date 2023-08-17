@@ -25,9 +25,10 @@
           </div>
 
           <div
-            class="w-full shadow-lg rounded-3xl bg-white dark:bg-gray-700 p-4 flex flex-col gap-y-2 shadow-gray-200 dark:shadow-gray-800">
+                  class="w-full shadow-lg rounded-3xl bg-white dark:bg-gray-700 p-4 flex flex-col gap-y-2 shadow-gray-200 dark:shadow-gray-800">
             @foreach(Status::cases() as $statusCode)
-              <x-dashboard-status-card :status="$statusCode" :href="route('work.myworks', ['status'=> $statusCode])"/>
+              <x-dashboard-status-card :status="$statusCode"
+                                       :href="route('work.myworks', ['status'=> $statusCode])"/>
             @endforeach
           </div>
         </div>

@@ -1,8 +1,8 @@
 @component('mail::message')
   # Solicitud bloqueada 🚫🚫🚫🚫🚫🚫
   Tu solicitud
-      *{{$work->title}}*
-      Ha sido **bloqueada** por alguno de los siguientos motivos:
+  *{{$work->title}}*
+  Ha sido **bloqueada** por alguno de los siguientos motivos:
 
   ---
 
@@ -18,6 +18,7 @@
     Ver solicitud
   @endcomponent
 
-  Si crees que esto no deberia ser asi o ha sido un error, reporta una queja al siguiente correo electronico: <thecodehousedev@gmail.com>
+  Si crees que esto no deberia ser asi o ha sido un error, reporta una queja al siguiente correo electronico:
+  <thecodehousedev@gmail.com>
 
 @endcomponent

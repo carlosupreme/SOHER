@@ -5,11 +5,11 @@
 @endphp
 
 <span
-  {{ $attributes->wire('then') }}
-  x-data
-  x-ref="span"
-  x-on:click="$wire.startConfirmingPassword('{{ $confirmableId }}')"
-  x-on:password-confirmed.window="setTimeout(() => $event.detail.id === '{{ $confirmableId }}' && $refs.span.dispatchEvent(new CustomEvent('then', { bubbles: false })), 250);"
+        {{ $attributes->wire('then') }}
+        x-data
+        x-ref="span"
+        x-on:click="$wire.startConfirmingPassword('{{ $confirmableId }}')"
+        x-on:password-confirmed.window="setTimeout(() => $event.detail.id === '{{ $confirmableId }}' && $refs.span.dispatchEvent(new CustomEvent('then', { bubbles: false })), 250);"
 >
     {{ $slot }}
 </span>
@@ -40,7 +40,8 @@
         {{ __('Cancel') }}
       </x-secondary-button>
 
-      <x-button class="ml-3" dusk="confirm-password-button" wire:click="confirmPassword" wire:loading.attr="disabled">
+      <x-button class="ml-3" dusk="confirm-password-button" wire:click="confirmPassword"
+                wire:loading.attr="disabled">
         {{ $button }}
       </x-button>
     </x-slot>

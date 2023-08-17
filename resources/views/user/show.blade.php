@@ -5,8 +5,8 @@
     <div class="mx-10 flex w-full flex-col rounded-b-lg bg-white dark:bg-gray-800 sm:mx-0">
       <div class="relative h-36 w-full rounded-t-lg bg-gradient-to-r from-rose-400 to-orange-300">
         <img
-          class="absolute -bottom-16 left-6 aspect-square h-32 w-32 rounded-full border-4 border-solid border-white object-cover dark:border-gray-800"
-          src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}">
+                class="absolute -bottom-16 left-6 aspect-square h-32 w-32 rounded-full border-4 border-solid border-white object-cover dark:border-gray-800"
+                src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}">
       </div>
 
       <div class="ml-6 mt-16 flex flex-col gap-y-2 pb-4">

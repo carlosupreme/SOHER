@@ -68,7 +68,7 @@
                autocomplete="username"/>
       <x-input-error for="email" class="mt-2"/>
 
-      @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
+        @if (! $this->user->hasVerifiedEmail())
         <p class="text-sm mt-2 dark:text-white">
           {{ __('Your email address is unverified.') }}
 

@@ -50,7 +50,11 @@ class UserEdit extends Component
         ]);
 
         $this->user->name = $this->nombre;
-        $this->user->email = $this->correo;
+        if ($this->user->email !== $this->correo) {
+            $this->user->email = $this->correo;
+            $this->user->email_verified_at = null;
+            $this->user->sendEmailVerificationNotification();
+        }
         $this->user->roles()->sync($this->roles);
         $this->user->save();
         return redirect()->route('user.index')->with('flash.banner', 'Usuario editado correctamente');
