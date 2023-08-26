@@ -10,7 +10,7 @@ class WorkController extends Controller
 
     public function index()
     {
-        if (Auth::user()->hasAnyPermission('work.index')) {
+        if (Auth::user()?->can('work.index')) {
             return view('work.index');
         }
 
@@ -19,7 +19,7 @@ class WorkController extends Controller
 
     public function create()
     {
-        if (Auth::user()->hasAnyPermission('work.create')) {
+        if (Auth::user()?->can('work.create')) {
             return view('work.create');
         }
 
@@ -28,7 +28,7 @@ class WorkController extends Controller
 
     public function show(Work $trabajo)
     {
-        if (Auth::user()->hasAnyPermission('work.show')) {
+        if (Auth::user()?->can('work.show')) {
             return view('work.show', ['work' => $trabajo]);
         }
 
@@ -37,7 +37,7 @@ class WorkController extends Controller
 
     public function edit(Work $trabajo)
     {
-        if (Auth::user()->can('work.edit')) {
+        if (Auth::user()?->can('work.edit')) {
             return view('work.edit', ['work' => $trabajo]);
         }
 

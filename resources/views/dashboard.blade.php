@@ -6,7 +6,7 @@
         <a href="{{route('work.create')}}"
            class="w-full text-white group hover:shadow-md shadow-blue-200 dark:shadow-blue-900 rounded-3xl bg-blue-600 hover:bg-blue-800 transition-all py-4 px-6 flex flex-col gap-y-4">
           <div class="font-bold flex justify-between py-4">
-            <p class="text-2xl">Solicitar trabajo</p>
+            <p class="text-2xl">Solicitar servicio</p>
             <i class="fa-solid fa-briefcase text-4xl"></i>
           </div>
 
@@ -25,7 +25,7 @@
           </div>
 
           <div
-                  class="w-full shadow-lg rounded-3xl bg-white dark:bg-gray-700 p-4 flex flex-col gap-y-2 shadow-gray-200 dark:shadow-gray-800">
+              class="w-full shadow-lg rounded-3xl bg-white dark:bg-gray-700 p-4 flex flex-col gap-y-2 shadow-gray-200 dark:shadow-gray-800">
             @foreach(Status::cases() as $statusCode)
               <x-dashboard-status-card :status="$statusCode"
                                        :href="route('work.myworks', ['status'=> $statusCode])"/>

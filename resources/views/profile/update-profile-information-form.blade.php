@@ -68,7 +68,7 @@
                autocomplete="username"/>
       <x-input-error for="email" class="mt-2"/>
 
-        @if (! $this->user->hasVerifiedEmail())
+      @if (! $this->user->hasVerifiedEmail())
         <p class="text-sm mt-2 dark:text-white">
           {{ __('Your email address is unverified.') }}
 
@@ -85,6 +85,14 @@
           </p>
         @endif
       @endif
+    </div>
+
+    <!-- Phone -->
+    <div class="col-span-6 sm:col-span-4">
+      <x-label for="phone" value="Número celular"/>
+      <x-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="state.phone" required
+               autocomplete="phone"/>
+      <x-input-error for="phone" class="mt-2"/>
     </div>
   </x-slot>
 

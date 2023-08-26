@@ -31,7 +31,7 @@
         @can('work.myworks')
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link href="{{ route('work.myworks') }}" :active="request()->routeIs('work.myworks')">
-              Mis trabajos
+              Mis solicitudes
             </x-nav-link>
           </div>
         @endcan
@@ -140,7 +140,7 @@
     @can('work.myworks')
       <div class="pt-2 pb-3 space-y-1">
         <x-responsive-nav-link href="{{ route('work.myworks') }}" :active="request()->routeIs('work.myworks')">
-          Mis trabajos
+          Mis solicitudes
         </x-responsive-nav-link>
       </div>
     @endcan

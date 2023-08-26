@@ -22,12 +22,12 @@ Breadcrumbs::for(
 
 Breadcrumbs::for('my-works', static fn(BreadcrumbTrail $trail) => $trail
     ->parent('home')
-    ->push('Mis Trabajos', route('work.myworks'))
+    ->push('Mis solicitudes', route('work.myworks'))
 );
 
 Breadcrumbs::for('my-work', static fn(BreadcrumbTrail $trail, $work) => $trail
     ->parent('my-works')
-    ->push('Trabajo #' . $work->id, route('work.show', $work->id))
+    ->push('Solicitud #' . $work->id, route('work.show', $work->id))
 );
 
 
