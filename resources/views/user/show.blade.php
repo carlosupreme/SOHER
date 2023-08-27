@@ -8,8 +8,9 @@
 
     <div class="px-2 sm:px-0 w-full overflow-hidden flex flex-col">
       <div class="w-full flex flex-col rounded-b-lg rounded-t-lg bg-white dark:bg-gray-800">
-        <div class="relative h-36 w-full rounded-t-lg bg-gradient-to-r from-rose-400 to-orange-300">
-          <img class="absolute -bottom-16 left-6 aspect-square object-cover h-32 w-32 rounded-full border-4 border-solid border-white dark:border-gray-800"
+        <div id="background" class="relative h-36 w-full rounded-t-lg">
+          <img id="user-photo"
+               class="absolute -bottom-16 left-6 aspect-square object-cover h-32 w-32 rounded-full border-4 border-solid border-white dark:border-gray-800"
                src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}">
         </div>
         <div class="flex flex-col gap-y-2 pt-16 pb-4 px-6">
@@ -37,4 +38,58 @@
       @livewire('reviews',['user' => $user->id])
     </div>
   </div>
+
+  <script>
+    function getAvgRGB(imgEl) {
+      const blockSize = 5;
+      const defaultRGB = {r: 127, g: 156, b: 245};
+      const rgb = {r: 0, g: 0, b: 0};
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext && canvas.getContext('2d');
+      let data, width, height;
+      let i = -4;
+      let length;
+      let count = 0;
+
+      if (!context) {
+        return defaultRGB;
+      }
+
+      height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
+      width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
+
+      context.imageSmoothingEnabled = true;
+      context.drawImage(imgEl, 0, 0);
+
+      try {
+        data = context.getImageData(0, 0, width, height);
+      } catch (e) {
+        return defaultRGB;
+      }
+
+      length = data.data.length;
+
+      while ((i += blockSize * 4) < length) {
+        ++count;
+        rgb.r += data.data[i];
+        rgb.g += data.data[i + 1];
+        rgb.b += data.data[i + 2];
+      }
+
+      // ~~ used to floor values
+      rgb.r = ~~(rgb.r / count);
+      rgb.g = ~~(rgb.g / count);
+      rgb.b = ~~(rgb.b / count);
+
+      return rgb;
+    }
+
+    document.addEventListener('DOMContentLoaded', e => {
+      const imgEl = document.getElementById('user-photo');
+      const {r, g, b} = getAvgRGB(imgEl);
+      document.getElementById('background').style.backgroundColor = `rgb(${r},${g},${b})`;
+    })
+  </script>
+
+
 </x-app-layout>

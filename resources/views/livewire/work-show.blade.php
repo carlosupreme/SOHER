@@ -17,11 +17,12 @@
             {!! Status::from($work->status)->tailwindBadge() !!}
           </div>
           <div class="flex items-center gap-x-2">
-            <a href="#" class="font-bold text-blue-500 hover:underline ">{{$work->client->name}}</a>
+            <a href="{{route('user.show', ['user' => $work->client_id])}}"
+               class="font-bold text-blue-500 hover:underline ">{{$work->client->name}}</a>
             <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                  fill="currentColor" viewBox="0 0 22 20">
               <path
-                      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                  d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
             </svg>
             <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{$clientRate}}</p>
           </div>
@@ -68,30 +69,24 @@
               </svg>
             </a>
             <img
-                    class="w-full select-none max-h-screen sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-7xl"
-                    src="{{$work->photo}}" alt="Trabajo 1">
+                class="w-full select-none max-h-screen sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-7xl"
+                src="{{$work->photo}}" alt="Trabajo 1">
           </div>
         </article>
       @endif
 
       <div class="flex items-center flex-wrap gap-2 font-bold ">
         <p class="text-gray-700 dark:text-gray-400">Presupuesto a negociar:</p>
-
-        @if($work->initial_budget === $work->final_budget)
-          <span class="bg-green-500 text-white px-2.5 py-1 rounded-lg shadow-sm"><i
-                    class="fa-solid fa-dollar-sign"></i> &nbsp; {{$work->initial_budget}}</span>
-        @else
-          <p class="text-gray-700 dark:text-gray-400">De</p>
-          <span class="bg-green-500 text-white px-2.5 py-1 rounded-lg shadow-sm"><i
-                    class="fa-solid fa-dollar-sign"></i> &nbsp; {{$work->initial_budget}}</span>
-          <p class="text-gray-700 dark:text-gray-400">a</p>
-          <span class="bg-green-500 text-white px-2.5 py-1 rounded-lg shadow-sm"><i
-                    class="fa-solid fa-dollar-sign"></i> &nbsp; {{$work->final_budget}}</span>
-        @endif
+        <p class="text-gray-700 dark:text-gray-400">De</p>
+        <span class="bg-green-500 text-white px-2.5 py-1 rounded-lg shadow-sm"><i
+              class="fa-solid fa-dollar-sign"></i> &nbsp; {{$work->initial_budget}}</span>
+        <p class="text-gray-700 dark:text-gray-400">a</p>
+        <span class="bg-green-500 text-white px-2.5 py-1 rounded-lg shadow-sm"><i
+              class="fa-solid fa-dollar-sign"></i> &nbsp; {{$work->final_budget}}</span>
       </div>
 
       <div class="text-gray-700 dark:text-gray-400 ">
-        <p><i class="fa-regular fa-calendar"></i> &nbsp; Fecha solicitada: <b>{{$fechaSolicitada}}</b></p>
+        <p><i class="fa-regular fa-calendar"></i> &nbsp; Fecha solicitada: <b>{{ucfirst($fechaSolicitada)}}</b></p>
       </div>
 
       <div class="sm:hidden border-t border-gray-200 dark:border-gray-700"></div>
