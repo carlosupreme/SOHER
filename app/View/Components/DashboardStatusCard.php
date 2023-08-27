@@ -2,7 +2,9 @@
 
 namespace App\View\Components;
 
+use App\Models\Work;
 use App\Work\Domain\Status;
+use Auth;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -11,11 +13,11 @@ class DashboardStatusCard extends Component
 {
     public Status $status;
     public int $counter;
+
     public function __construct(Status $status)
     {
         $this->status = $status;
-        $user = \Auth::user();
-        $this->counter = $user->works->filter(fn($work) =>  $work->status === $status->value)->count();
+        $this->counter = Work::where('client_id', Auth::id())->where('status', $status->value)->count();
     }
 
     /**

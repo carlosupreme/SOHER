@@ -25,7 +25,8 @@ class WorkIndex extends Component
 
     public function render()
     {
-        $works = Work::matching($this->search, 'title', 'description', 'skills')
+        $works = Work::with(['client' => fn($q) => $q->select('id', 'name', 'profile_photo_path')])
+            ->matching($this->search, 'title', 'description', 'skills')
             ->matching($this->status, 'status')
             ->orderBy('created_at', 'desc')
             ->paginate(10);

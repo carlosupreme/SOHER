@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Mail\WorkBlockedByAdmin;
+use App\Models\Review;
 use App\Work\Domain\Status;
 use Auth;
 use Livewire\Component;
@@ -22,10 +23,16 @@ class WorkShow extends Component
     public function mount($work)
     {
         $this->user = Auth::user();
-        $this->clientRate = 4.9;
+        $this->clientRate = number_format(Review::where('to_user_id', $work->client_id)->avg('rating'), 1);
         $this->work = $work;
         $deadline = $work->deadline;
-        $this->fechaSolicitada = ucfirst($deadline->getTranslatedDayName()) . ' ' . $deadline->day . ' de ' . ucfirst($deadline->getTranslatedMonthName()) . ' del ' . $deadline->year;
+        $this->fechaSolicitada = sprintf(
+            "%s %d de %s del %d",
+            $deadline->getTranslatedDayName(),
+            $deadline->day,
+            $deadline->getTranslatedMonthName(),
+            $deadline->year
+        );
     }
 
     public function archive()

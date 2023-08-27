@@ -90,9 +90,8 @@
         @endif
       </div>
 
-      <div>
-        <p class="text-gray-700 dark:text-gray-400"><i class="fa-regular fa-calendar"></i> &nbsp; Fecha
-          solicitada: <strong>{{$fechaSolicitada}}</strong></p>
+      <div class="text-gray-700 dark:text-gray-400 ">
+        <p><i class="fa-regular fa-calendar"></i> &nbsp; Fecha solicitada: <b>{{$fechaSolicitada}}</b></p>
       </div>
 
       <div class="sm:hidden border-t border-gray-200 dark:border-gray-700"></div>
