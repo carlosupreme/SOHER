@@ -17,7 +17,7 @@
   <div class="ml-2 flex items-center gap-x-1.5">
     <p class="text-sm font-medium text-gray-500 dark:text-gray-400"> {{ $rate }} de 5</p>
     <span class="h-1 w-1 rounded-full bg-gray-500 dark:bg-gray-400"></span>
-    <a href="#"
+    <a href="#reviews"
        class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">{{ $reviews }}
       opiniones</a>
   </div>

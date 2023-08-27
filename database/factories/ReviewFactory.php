@@ -12,10 +12,11 @@ class ReviewFactory extends Factory
 {
     public function definition(): array
     {
-        $rating = [1, 2, 3, 4, 5];
+        $rating = [1, 2, 3, 4];
         $decimal = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         return [
-            'user_id' => User::all('id')->random()->id,
+            'from_user_id' => User::all('id')->random()->id,
+            'to_user_id' => User::all('id')->random()->id,
             'rating' => $this->faker->randomElement($rating) . '.' . $this->faker->randomElement($decimal),
             'title' => $this->faker->realText(70),
             'review' => $this->faker->paragraph(),

@@ -26,7 +26,7 @@
         <div class="flex gap-x-2 items-center">
           <img class="h-8 w-8 rounded-full object-cover" src="{{ $work->client->profile_photo_url }}"
                alt="{{ $work->client->name}}"/>
-          <a href="{{'#gotoClientShow'. $work->client->id}}"
+          <a href="{{route('user.show', ['user'=> $work->client->id])}}"
              class="dark:text-gray-200 hover:underline">{{$work->client->name}}</a>
         </div>
         <div class="border-t border-gray-200 dark:border-gray-600"></div>

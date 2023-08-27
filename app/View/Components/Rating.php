@@ -16,9 +16,9 @@ class Rating extends Component
     public function __construct($client)
     {
         $this->client = $client;
-        $this->rate = $client->rating();
+        $this->rate = number_format($client->reviews_avg_rating, 1);
         $this->stars = round($this->rate);
-        $this->reviews = $client->reviews->count();
+        $this->reviews = $client->reviews_count;
     }
 
     public function render(): View|Closure|string

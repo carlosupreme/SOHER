@@ -37,4 +37,5 @@ Breadcrumbs::for('work.edit', static fn(BreadcrumbTrail $trail, $work) => $trail
 
 Breadcrumbs::for('users', static fn (BreadcrumbTrail $trail) => $trail->parent('home')->push('Usuarios', route('user.index')));
 
-Breadcrumbs::for('user', static fn (BreadcrumbTrail $trail, $user) => $trail->parent('users')->push($user->name, route('user.show', $user)));
+Breadcrumbs::for('user', static fn(BreadcrumbTrail $trail, $user) => $trail->parent('users')->push($user->name, route('user.show', ['user' => $user->id])));
+Breadcrumbs::for('view-user', static fn(BreadcrumbTrail $trail, $user) => $trail->parent('home')->push($user->name, route('user.show', ['user' => $user->id])));

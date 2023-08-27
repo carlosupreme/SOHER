@@ -12,11 +12,11 @@ use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
-        public function run(): void
-        {
-                $this->call(RoleSeeder::class);
-                User::factory(10)->create()->each->syncRoles(Role::pluck('id')->toArray());
-                Work::factory(10)->create();
-                Review::factory(10)->create();
-        }
+    public function run(): void
+    {
+        $this->call(RoleSeeder::class);
+        User::factory(10)->create()->each->syncRoles(Role::pluck('id')->toArray());
+        Work::factory(5)->create();
+        Review::factory(100)->create();
+    }
 }
