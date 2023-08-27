@@ -84,10 +84,20 @@
       return rgb;
     }
 
+    function getLighterColor({r, g, b}, howMuch) {
+      r = (r + howMuch > 255) ? 255 : r + howMuch;
+      g = (g + howMuch > 255) ? 255 : g + howMuch;
+      b = (b + howMuch > 255) ? 255 : b + howMuch;
+
+      return {rl: r, gl: g, bl: b};
+    }
+
     document.addEventListener('DOMContentLoaded', e => {
       const imgEl = document.getElementById('user-photo');
       const {r, g, b} = getAvgRGB(imgEl);
-      document.getElementById('background').style.backgroundColor = `rgb(${r},${g},${b})`;
+      const {rl, gl, bl} = getLighterColor({r, g, b}, 20);
+      const bgEl = document.getElementById('background');
+      bgEl.style.background = `linear-gradient(to bottom, rgb(${rl},${gl},${bl}), rgb(${r},${g},${b}))`;
     })
   </script>
 
