@@ -3,8 +3,10 @@
      class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-y-4 sm:mt-4 relative">
   @if(Auth::user()->hasAnyRole('admin'))
     {{ Breadcrumbs::render('work', $work) }}
-  @else
+  @elseif(Auth::user()->hasAnyRole('client'))
     {{ Breadcrumbs::render('my-work', $work) }}
+  @else
+    {{ Breadcrumbs::render('assigned-work', $work) }}
   @endif
 
   <div class="flex flex-col gap-y-4 gap-x-5 ">
@@ -91,7 +93,6 @@
 
       <div class="sm:hidden border-t border-gray-200 dark:border-gray-700"></div>
       <div class="flex flex-col sm:flex-row gap-2 w-full">
-
         @if($user->id === $work->client_id)
           {{--ARCHIVAR TRABAJO--}}
           @if($work->status === Status::OPEN->value)
@@ -169,14 +170,13 @@
               Editar solicitud
             </a>
           @endif
-
         @else
           @if($work->status === Status::OPEN->value)
-            <a href="{{route('work.assign', $work)}}"
-               class="inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+            <button wire:click="assign"
+                    class="inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
               <i class="fa-regular fa-handshake mr-2 -ml-1"></i>
               Buscar trabajador
-            </a>
+            </button>
 
             <button wire:click="$emit('selectItem',{{ $work->id }})"
                     class="inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-red-500 rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
@@ -184,6 +184,20 @@
               Bloquear
             </button>
           @endif
+        @endif
+
+        @if($work->status === Status::PROGRESS->value)
+          <div
+              class="text-gray-800 dark:text-gray-300 dark:bg-gray-700 bg-gray-50 p-4 rounded-3xl flex flex-col gap-y-4">
+            <h4 class="text-center">Trabajo asignado a</h4>
+            <div class="flex gap-x-2 items-center">
+              <img class="rounded-full w-12 h-12 sm:w-16 sm:h-16 object-cover"
+                   src="{{$assigned?->profile_photo_url}}"
+                   alt="{{$assigned?->name}}">
+              <a href="{{route('user.show', ['user' => $assigned->id])}}"
+                 class="hover:underline text-xl">{{$assigned?->name}}</a>
+            </div>
+          </div>
         @endif
 
       </div>
@@ -195,7 +209,6 @@
     </div>
   </div>
 
-
   @livewire('delete-modal', [
   'title' => 'Bloquear trabajo',
   'content' => 'Al bloquear el trabajo, se notificará y amonestará al cliente',
@@ -203,5 +216,6 @@
   'action' => 'blockWork',
   'actionName' => 'Bloquear'
   ])
+  @livewire('work.assign', ['workId' => $work->id])
 
 </div>

@@ -33,6 +33,16 @@
           </div>
         </div>
       @endcan
+
+        @can('work.assigned')
+          <a href="{{route('work.assigned-index')}}"
+             class="w-full text-white group hover:shadow-md shadow-orange-200 dark:shadow-orange-900 rounded-3xl bg-orange-600 hover:bg-orange-800 transition-all py-4 px-6 flex flex-col gap-y-4">
+            <div class="font-bold flex justify-between py-4">
+              <p class="text-2xl">Solicitudes asignadas</p>
+              <i class="fa-solid fa-screwdriver-wrench text-4xl"></i>
+            </div>
+          </a>
+        @endcan
     </div>
   </div>
 </x-app-layout>

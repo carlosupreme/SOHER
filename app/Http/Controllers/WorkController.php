@@ -49,19 +49,21 @@ class WorkController extends Controller
         return view('work.myworks');
     }
 
-    public function assign(Work $work)
+    public function assign($work)
     {
-        return $work;
+        return view('work.assign', [
+            'work' => Work::with('client')->findOrFail($work)
+        ]);
     }
 
     public function assignedIndex()
     {
-        return "lista de asignadas";
+        return view('work.assigned-index');
     }
 
     public function assignedShow(Work $work)
     {
-        return $work;
+        return view('work.show', ['work' => $work]);
     }
 
 }

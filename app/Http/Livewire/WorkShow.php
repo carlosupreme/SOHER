@@ -18,6 +18,7 @@ class WorkShow extends Component
     protected $listeners = ['blockWork'];
 
     public $user;
+    public $modalAssignOpen = false;
 
 
     public function mount($work)
@@ -57,8 +58,18 @@ class WorkShow extends Component
         Mail::to($this->work->client->email)->send(new WorkBlockedByAdmin($this->work));
     }
 
+    public function assign()
+    {
+        $this->emit('modalAssignOpen');
+    }
+
     public function render()
     {
-        return view('livewire.work-show');
+        $assigned = null;
+        if ($this->work->status === Status::PROGRESS->value) {
+            $assigned = $this->work->assigned->user;
+        }
+
+        return view('livewire.work-show', compact('assigned'));
     }
 }

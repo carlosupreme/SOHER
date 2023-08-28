@@ -16,7 +16,7 @@
   <div class="flex flex-col lg:grid lg:grid-cols-2 gap-4 px-4 sm:px-0 mb-4 sm:mb-0">
     @forelse($works as $work)
       <div
-              class="text-gray-800 dark:text-gray-400 leading-relaxed text-justify bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent p-4 rounded-lg shadow-md flex flex-col gap-y-5">
+          class="text-gray-800 dark:text-gray-400 leading-relaxed text-justify bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent p-4 rounded-lg shadow-md flex flex-col gap-y-5">
         <div class="flex gap-x-10 flex-col md:flex-row">
           <a href="{{route('work.show', $work->id)}}"
              class="text-gray-950 dark:text-gray-100 font-bold text-lg hover:underline">{{$work->title}} </a>
