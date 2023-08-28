@@ -28,11 +28,7 @@ class WorkController extends Controller
 
     public function show(Work $trabajo)
     {
-        if (Auth::user()?->can('work.show')) {
-            return view('work.show', ['work' => $trabajo]);
-        }
-
-        abort(404);
+        return view('work.show', ['work' => $trabajo]);
     }
 
     public function edit(Work $trabajo)

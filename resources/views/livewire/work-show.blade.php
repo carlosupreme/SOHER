@@ -186,21 +186,44 @@
           </button>
         @endif
 
-        @if($work->status === Status::PROGRESS->value)
-          <div
-              class="text-gray-800 dark:text-gray-300 dark:bg-gray-700 bg-gray-50 p-4 rounded-3xl flex flex-col gap-y-4">
-            <h4 class="text-center">Trabajo asignado a</h4>
-            <div class="flex gap-x-2 items-center">
-              <img class="rounded-full w-12 h-12 sm:w-16 sm:h-16 object-cover"
-                   src="{{$assigned?->profile_photo_url}}"
-                   alt="{{$assigned?->name}}">
-              <a href="{{route('user.show', ['user' => $assigned->id])}}"
-                 class="hover:underline text-xl">{{$assigned?->name}}</a>
-            </div>
-          </div>
+          @if($assigned?->id === Auth::id())
+            <button wire:click="complete"
+                    class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900">
+              <i class="fas fa-check-circle group-hover:animate-bounce mr-2 -ml-1"></i>
+              Finalizada
+            </button>
         @endif
 
+          @if($work->status === Status::FINISHED->value && Auth::id() === $work->client_id)
+            <div class="flex flex-col gap-y-2">
+              <p class="text-gray-500">El profesional ha marcado esta solicitud como <b>finalizada</b>, ¿estás de
+                acuerdo?
+              </p>
+              <button wire:click="close"
+                      class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 dark:focus:ring-yellow-900">
+                <i class="fas fa-handshake group-hover:animate-bounce mr-2 -ml-1"></i>
+                De acuerdo
+              </button>
+            </div>
+          @endif
+
+
       </div>
+
+      @if($work->status === Status::PROGRESS->value)
+        <div
+            class="text-gray-800 dark:text-gray-300 dark:bg-gray-700 bg-gray-50 p-4 rounded-3xl flex flex-col gap-y-4">
+          <h4 class="text-center">Trabajo asignado a</h4>
+          <div class="flex gap-x-2 items-center">
+            <img class="rounded-full w-10 h-10 sm:w-16 sm:h-16 object-cover"
+                 src="{{$assigned?->profile_photo_url}}"
+                 alt="{{$assigned?->name}}">
+            <a href="{{route('user.show', ['user' => $assigned->id])}}"
+               class="hover:underline text-xl">{{$assigned?->name}}</a>
+          </div>
+        </div>
+      @endif
+
       @if($work->status === Status::OPEN->value && $user->id === $work->client_id)
         <small class="text-gray-500"> <i class="fa-solid fa-info"></i> &nbsp; Para editar la solicitud debes
           archivarla

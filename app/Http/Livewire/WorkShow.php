@@ -63,13 +63,28 @@ class WorkShow extends Component
         $this->emit('modalAssignOpen');
     }
 
+    public function complete()
+    {
+        //pedir firma
+        $this->work->status = Status::FINISHED->value;
+        $this->work->save();
+        return redirect()->route('work.show', $this->work)->with('flash.banner', 'Solicitud completada');
+    }
+
+    public function close()
+    {
+        //pedir firma
+        $this->work->status = Status::CLOSED->value;
+        $this->work->save();
+        return redirect()->route('work.show', $this->work)->with('flash.banner', 'Solicitud cerrada');
+    }
+
     public function render()
     {
         $assigned = null;
         if ($this->work->status === Status::PROGRESS->value) {
             $assigned = $this->work->assigned->user;
         }
-
 
         return view('livewire.work-show', compact('assigned'));
     }
