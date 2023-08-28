@@ -13,7 +13,7 @@
         </div>
         @can('user.index')
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-            <x-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
+            <x-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.*')">
               Usuarios
             </x-nav-link>
           </div>
@@ -36,6 +36,15 @@
           </div>
         @endcan
 
+        @can('work.assigned')
+          <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link href="{{ route('work.assigned-index') }}"
+                        :active="request()->routeIs('work.assigned-index')">
+              Asignadas
+            </x-nav-link>
+          </div>
+        @endcan
+
 
       </div>
 
@@ -46,7 +55,7 @@
             <x-slot name="trigger">
               @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                 <button
-                        class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                    class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
                   <img class="h-8 w-8 rounded-full object-cover"
                        src="{{ Auth::user()->profile_photo_url }}"
                        alt="{{ Auth::user()->name }}"/>
@@ -122,7 +131,7 @@
     </div>
     @can('user.index')
       <div class="pt-2 pb-3 space-y-1">
-        <x-responsive-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
+        <x-responsive-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.*')">
           Usuarios
         </x-responsive-nav-link>
       </div>
@@ -140,6 +149,15 @@
       <div class="pt-2 pb-3 space-y-1">
         <x-responsive-nav-link href="{{ route('work.myworks') }}" :active="request()->routeIs('work.myworks')">
           Mis solicitudes
+        </x-responsive-nav-link>
+      </div>
+    @endcan
+
+    @can('work.assigned')
+      <div class="pt-2 pb-3 space-y-1">
+        <x-responsive-nav-link href="{{ route('work.assigned-index') }}"
+                               :active="request()->routeIs('work.assigned-index')">
+          Asignadas
         </x-responsive-nav-link>
       </div>
     @endcan

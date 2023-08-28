@@ -70,6 +70,7 @@ class WorkShow extends Component
             $assigned = $this->work->assigned->user;
         }
 
+
         return view('livewire.work-show', compact('assigned'));
     }
 }

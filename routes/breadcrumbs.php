@@ -31,8 +31,13 @@ Breadcrumbs::for('my-work', static fn(BreadcrumbTrail $trail, $work) => $trail
 );
 
 Breadcrumbs::for('assigned-work', static fn(BreadcrumbTrail $trail, $work) => $trail
+    ->parent('assigned-index')
+    ->push('Asignada #' . $work->id)
+);
+
+Breadcrumbs::for('assigned-index', static fn(BreadcrumbTrail $trail) => $trail
     ->parent('home')
-    ->push('Solicitud #' . $work->id)
+    ->push('Asignadas', route('work.assigned-index'))
 );
 
 Breadcrumbs::for('work-assign', static fn(BreadcrumbTrail $trail, $work) => $trail->parent('work', $work)->push('Asignar', route('work.assign', $work)));

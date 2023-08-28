@@ -21,8 +21,8 @@ class Assign extends Component
         $this->workId = $workId;
         $this->open = false;
         $this->workers = User::role('worker')
-            ->get(['name', 'id', 'profile_photo_path'])
-            ->filter((fn($u) => $u->available())); // make the filter in query for perfomance
+            ->get(['name', 'id', 'profile_photo_path'])//->filter((fn($u) => $u->available())) // make the filter in query for perfomance
+        ;
     }
 
     public function assign()

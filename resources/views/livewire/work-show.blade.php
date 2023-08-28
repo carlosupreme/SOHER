@@ -1,12 +1,12 @@
 @php use App\Work\Domain\Status; @endphp
 <div x-data="{modalOpen: false}" @keydown="modalOpen = false"
      class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-y-4 sm:mt-4 relative">
-  @if(Auth::user()->hasAnyRole('admin'))
+  @if($assigned?->id === Auth::id())
+    {{ Breadcrumbs::render('assigned-work', $work) }}
+  @elseif(Auth::user()->hasAnyRole('admin'))
     {{ Breadcrumbs::render('work', $work) }}
   @elseif(Auth::user()->hasAnyRole('client'))
     {{ Breadcrumbs::render('my-work', $work) }}
-  @else
-    {{ Breadcrumbs::render('assigned-work', $work) }}
   @endif
 
   <div class="flex flex-col gap-y-4 gap-x-5 ">
@@ -170,20 +170,20 @@
               Editar solicitud
             </a>
           @endif
-        @else
-          @if($work->status === Status::OPEN->value)
-            <button wire:click="assign"
-                    class="inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-              <i class="fa-regular fa-handshake mr-2 -ml-1"></i>
-              Buscar trabajador
-            </button>
+        @endif
 
-            <button wire:click="$emit('selectItem',{{ $work->id }})"
-                    class="inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-red-500 rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
-              <i class="fas fa-ban group-hover:animate-bounce mr-2 -ml-1"></i>
-              Bloquear
-            </button>
-          @endif
+        @if($work->status === Status::OPEN->value && Auth::user()->can('work.assign'))
+          <button wire:click="assign"
+                  class="inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+            <i class="fa-regular fa-handshake mr-2 -ml-1"></i>
+            Buscar trabajador
+          </button>
+
+          <button wire:click="$emit('selectItem',{{ $work->id }})"
+                  class="inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-red-500 rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+            <i class="fas fa-ban group-hover:animate-bounce mr-2 -ml-1"></i>
+            Bloquear
+          </button>
         @endif
 
         @if($work->status === Status::PROGRESS->value)
