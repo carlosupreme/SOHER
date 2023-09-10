@@ -57,7 +57,7 @@ class WorkCreate extends Component
             'deadline.*' => 'required',
             'description' => 'required|min:10|max:2000',
             'initialBudget' => 'required|numeric|min:1|max_digits:6',
-            'finalBudget' => 'required|numeric|gte:initialBudget|max_digits:6'
+            'finalBudget' => 'required|numeric|gte:initialBudget|max_digits:6',
         ]);
 
         $work = new Work();
@@ -85,5 +85,10 @@ class WorkCreate extends Component
     public function render()
     {
         return view('livewire.work.work-create');
+    }
+
+    public function updatedPhoto()
+    {
+        $this->validateOnly('photo', ['photo' => 'image']);
     }
 }

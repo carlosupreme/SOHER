@@ -95,4 +95,9 @@ class WorkEdit extends Component
     {
         return view('livewire.work.work-edit');
     }
+
+    public function updatedNewPhoto()
+    {
+        $this->validateOnly('newPhoto', ['newPhoto' => 'image']);
+    }
 }

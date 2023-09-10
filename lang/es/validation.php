@@ -218,6 +218,7 @@ return [
         'finalBudget'              => 'presupuesto final',
         'deadline.day'             => 'día',
         'deadline.month'           => 'mes',
-        'deadline.year'            => 'año'
+        'deadline.year'            => 'año',
+        "newPhoto"                 => "foto"
     ],
 ];
