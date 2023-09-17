@@ -10,9 +10,9 @@ class Reviews extends Component
     public $userId;
     protected $listeners = ['refreshList' => '$refresh'];
 
-    public function mount($user)
+    public function mount($userId)
     {
-        $this->userId = $user;
+        $this->userId = $userId;
     }
 
     public function create()
