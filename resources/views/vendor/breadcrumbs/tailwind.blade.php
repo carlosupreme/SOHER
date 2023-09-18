@@ -31,7 +31,7 @@
                       d="m1 9 4-4-4-4"/>
               </svg>
               <span
-                      class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{$breadcrumb->title}}</span>
+                  class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{$breadcrumb->title}}</span>
             </div>
           </li>
         @endif

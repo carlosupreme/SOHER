@@ -20,20 +20,23 @@ class RoleSeeder extends Seeder
         // As a Worker i can view a list of works assigned, view each work, and rate my clients i worked with
         Permission::create(['name' => 'work.assigned'])->assignRole($worker);
         Permission::create(['name' => 'client.rate'])->assignRole($worker);
+        Permission::create(['name' => 'work.assignedIndex'])->assignRole($worker);
 
 
         //As a Client i can create, edit and show a work, view a list of my created works and rate my workers
         Permission::create(['name' => 'work.create'])->assignRole($client);
         Permission::create(['name' => 'work.edit'])->assignRole($client);
         Permission::create(['name' => 'work.myworks'])->assignRole($client);
-        Permission::create(['name' => 'worker.rate'])->assignRole($client);
         Permission::create(['name' => 'work.archive'])->assignRole($client);
+        Permission::create(['name' => 'work.show'])->assignRole($client);
+        Permission::create(['name' => 'worker.rate'])->assignRole($client);
 
-        Permission::create(['name' => 'work.show'])->syncRoles([$client, $admin]);
         // As an Admin i can CRUD Users, View a list of all works, assign a worker to a work
         Permission::create(['name' => 'work.index'])->assignRole($admin);
         Permission::create(['name' => 'work.delete'])->assignRole($admin);
         Permission::create(['name' => 'work.assign'])->assignRole($admin);
+        Permission::create(['name' => 'work.details'])->assignRole($admin);
+
         Permission::create(['name' => 'user.index'])->assignRole($admin);
         Permission::create(['name' => 'user.create'])->assignRole($admin);
         Permission::create(['name' => 'user.edit'])->assignRole($admin);

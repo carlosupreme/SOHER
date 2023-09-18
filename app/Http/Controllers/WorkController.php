@@ -26,15 +26,20 @@ class WorkController extends Controller
         abort(404);
     }
 
-    public function show(Work $trabajo)
+    public function show($id)
     {
-        return view('work.show', ['work' => $trabajo]);
+        $solicitud = Work::findOrFail($id);
+        if (Auth::id() === $solicitud->client->id && Auth::user()?->can('work.show')) {
+            return view('work.show', ['work' => $solicitud]);
+        }
+
+        abort(404);
     }
 
-    public function edit(Work $trabajo)
+    public function edit($id)
     {
         if (Auth::user()?->can('work.edit')) {
-            return view('work.edit', ['work' => $trabajo]);
+            return view('work.edit', ['work' => Work::findOrFail($id)]);
         }
 
         abort(404);
@@ -60,6 +65,11 @@ class WorkController extends Controller
     public function assignedShow(Work $work)
     {
         return view('work.show', ['work' => $work]);
+    }
+
+    public function details(Work $work)
+    {
+        return view('work.details', ['work' => $work]);
     }
 
 }

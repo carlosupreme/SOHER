@@ -14,9 +14,9 @@
             apartado</p>
         </label>
         <x-input
-                name="title" id="title" wire:model="title" type="text"
-                placeholder="Ejemplo: Necesito un plomero para reparar fuga de agua en baño"
-                maxlength="70"/>
+            name="title" id="title" wire:model="title" type="text"
+            placeholder="Ejemplo: Necesito un plomero para reparar fuga de agua en baño"
+            maxlength="70"/>
 
         <x-input-error for="title" class="ml-1"/>
       </div>
@@ -60,10 +60,10 @@
             trabajo?</h3>
         </label>
         <x-input
-                name="location" id="location" wire:model="location"
-                type="text"
-                placeholder="Calle Diamante #111, Colonia Bugambilias, Santa Rosa Panzacola"
-                maxlength="100"
+            name="location" id="location" wire:model="location"
+            type="text"
+            placeholder="Calle Diamante #111, Colonia Bugambilias, Santa Rosa Panzacola"
+            maxlength="100"
         />
         <x-input-error for="location" class="ml-1"/>
       </div>
@@ -74,12 +74,12 @@
             estás dispuesto a negociar?</h3>
         </label>
         <div
-                class="flex flex-col gap-y-4 items-center justify-center lg:grid lg:grid-cols-2 lg:gap-4 lg:place-items-center">
+            class="flex flex-col gap-y-4 items-center justify-center lg:grid lg:grid-cols-2 lg:gap-4 lg:place-items-center">
           <div class="flex items-center gap-x-4 whitespace-nowrap">
             <span class="text-gray-700 dark:text-gray-400">De</span>
             <div class="relative">
                             <span
-                                    class="text-gray-500 pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">$</span>
+                                class="text-gray-500 pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">$</span>
               <x-input type="number" name="initialBudget" id="initialBudget" class="pl-7" min="1"
                        wire:model="initialBudget"
                        placeholder="0.00"/>
@@ -89,7 +89,7 @@
             <span class="text-gray-700 dark:text-gray-400">A</span>
             <div class="relative">
                             <span
-                                    class="text-gray-500 pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">$</span>
+                                class="text-gray-500 pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">$</span>
               <x-input type="number" name="initialBudget" id="initialBudget" class="pl-7" min="1"
                        wire:model="finalBudget"
                        placeholder="0.00"/>
@@ -167,7 +167,7 @@
                  class="flex items-center justify-center w-full h-10 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
             <p wire:loading.remove wire:target="photo"
                class="text-sm text-gray-500 dark:text-gray-400">Click aqui para <strong
-                      class="font-extrabold">{{$photo? ' cambiar la ' : ' subir una '}}</strong> foto
+                  class="font-extrabold">{{$photo? ' cambiar la ' : ' subir una '}}</strong> foto
               &nbsp; <i class="fa-solid fa-paperclip"></i></p>
             <div wire:loading wire:target="photo">
               <x-loader/>

@@ -15,14 +15,24 @@ class Assign extends Component
     protected $listeners = ['modalAssignOpen'];
     public $workers;
     public $selected = -1;
+    public $work;
+    public $fechaSolicitada;
 
-    public function mount($workId)
+    public function mount($work)
     {
-        $this->workId = $workId;
+        $this->workId = $work->id;
+        $this->work = $work;
         $this->open = false;
         $this->workers = User::role('worker')
             ->get(['name', 'id', 'profile_photo_path'])//->filter((fn($u) => $u->available())) // make the filter in query for perfomance
         ;
+        $this->fechaSolicitada = sprintf(
+            "%s %d de %s del %d",
+            $work->deadline->getTranslatedDayName(),
+            $work->deadline->day,
+            $work->deadline->getTranslatedMonthName(),
+            $work->deadline->year
+        );
     }
 
     public function assign()

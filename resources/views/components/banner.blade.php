@@ -39,11 +39,11 @@
 
       <div class="shrink-0 sm:ml-3">
         <button
-                type="button"
-                class="-mr-1 flex p-2 rounded-md focus:outline-none sm:-mr-2 transition"
-                :class="{ 'hover:bg-blue-600 focus:bg-blue-600': style == 'success', 'hover:bg-rose-600 focus:bg-rose-600': style == 'danger' }"
-                aria-label="Dismiss"
-                x-on:click="show = false">
+            type="button"
+            class="-mr-1 flex p-2 rounded-md focus:outline-none sm:-mr-2 transition"
+            :class="{ 'hover:bg-blue-600 focus:bg-blue-600': style == 'success', 'hover:bg-rose-600 focus:bg-rose-600': style == 'danger' }"
+            aria-label="Dismiss"
+            x-on:click="show = false">
           <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>

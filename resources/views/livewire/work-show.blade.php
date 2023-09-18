@@ -1,13 +1,7 @@
 @php use App\Work\Domain\Status; @endphp
 <div x-data="{modalOpen: false}" @keydown="modalOpen = false"
      class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-y-4 sm:mt-4 relative">
-  @if($assigned?->id === Auth::id())
-    {{ Breadcrumbs::render('assigned-work', $work) }}
-  @elseif(Auth::user()->hasAnyRole('admin'))
-    {{ Breadcrumbs::render('work', $work) }}
-  @elseif(Auth::user()->hasAnyRole('client'))
-    {{ Breadcrumbs::render('my-work', $work) }}
-  @endif
+  {{ Breadcrumbs::render('my-work', $work) }}
 
   <div class="flex flex-col gap-y-4 gap-x-5 ">
     <div class="flex flex-col gap-5 bg-white dark:bg-gray-800 sm:rounded-lg shadow-lg p-4">
@@ -93,119 +87,105 @@
 
       <div class="sm:hidden border-t border-gray-200 dark:border-gray-700"></div>
       <div class="flex flex-col sm:flex-row gap-2 w-full">
-        @if($user->id === $work->client_id)
-          {{--ARCHIVAR TRABAJO--}}
-          @if($work->status === Status::OPEN->value)
-            <button @click="modalOpen =!modalOpen"
-                    class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 dark:focus:ring-indigo-900">
-              <i class="fas fa-archive group-hover:animate-bounce mr-2 -ml-1"></i>
-              Archivar trabajo
-            </button>
-            <div x-show="modalOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title"
-                 role="dialog"
-                 aria-modal="true">
-              <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                <div x-cloak @click="modalOpen = false" x-show="modalOpen"
-                     x-transition:enter="transition ease-out duration-300 transform"
-                     x-transition:enter-start="opacity-0"
-                     x-transition:enter-end="opacity-100"
-                     x-transition:leave="transition ease-in duration-200 transform"
-                     x-transition:leave-start="opacity-100"
-                     x-transition:leave-end="opacity-0"
-                     class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40"
-                     aria-hidden="true"
-                ></div>
 
-                <div x-cloak x-show="modalOpen"
-                     x-transition:enter="transition ease-out duration-300 transform"
-                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                     x-transition:leave="transition ease-in duration-200 transform"
-                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                     class="inline-block  bg-white dark:bg-gray-800 w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform rounded-lg shadow-xl 2xl:max-w-2xl"
-                >
-                  <div class="flex items-center justify-between space-x-4">
-                    <h1 class="text-xl font-medium text-gray-800 dark:text-gray-200">Archivar
-                      solicitud del trabajo</h1>
+        {{--ARCHIVAR TRABAJO--}}
+        @if($work->status === Status::OPEN->value)
+          <button @click="modalOpen =!modalOpen"
+                  class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 dark:focus:ring-indigo-900">
+            <i class="fas fa-archive group-hover:animate-bounce mr-2 -ml-1"></i>
+            Archivar trabajo
+          </button>
+          <div x-show="modalOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title"
+               role="dialog"
+               aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+              <div x-cloak @click="modalOpen = false" x-show="modalOpen"
+                   x-transition:enter="transition ease-out duration-300 transform"
+                   x-transition:enter-start="opacity-0"
+                   x-transition:enter-end="opacity-100"
+                   x-transition:leave="transition ease-in duration-200 transform"
+                   x-transition:leave-start="opacity-100"
+                   x-transition:leave-end="opacity-0"
+                   class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40"
+                   aria-hidden="true"
+              ></div>
 
-                    <button @click="modalOpen = false"
-                            class="text-gray-600 focus:outline-none hover:text-gray-700 dark:hover:text-gray-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                           viewBox="0 0 24 24"
-                           stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                      </svg>
-                    </button>
-                  </div>
+              <div x-cloak x-show="modalOpen"
+                   x-transition:enter="transition ease-out duration-300 transform"
+                   x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                   x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                   x-transition:leave="transition ease-in duration-200 transform"
+                   x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                   x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                   class="inline-block  bg-white dark:bg-gray-800 w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform rounded-lg shadow-xl 2xl:max-w-2xl"
+              >
+                <div class="flex items-center justify-between space-x-4">
+                  <h1 class="text-xl font-medium text-gray-800 dark:text-gray-200">Archivar
+                    solicitud del trabajo</h1>
 
-                  <p class="mt-2 text-gray-500">
-                    Esto cancelará todo proceso de selección de profesional, si quieres puedes
-                    volver a solicitarla
-                  </p>
+                  <button @click="modalOpen = false"
+                          class="text-gray-600 focus:outline-none hover:text-gray-700 dark:hover:text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </button>
+                </div>
 
-                  <div class="flex justify-end mt-6">
-                    <button wire:click="archive"
-                            class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 dark:focus:ring-indigo-900">
-                      <i class="fas fa-archive group-hover:animate-bounce mr-2 -ml-1"></i>
-                      Archivar trabajo
-                    </button>
-                  </div>
+                <p class="mt-2 text-gray-500">
+                  Esto cancelará todo proceso de selección de profesional, si quieres puedes
+                  volver a solicitarla
+                </p>
+
+                <div class="flex justify-end mt-6">
+                  <button wire:click="archive"
+                          class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 dark:focus:ring-indigo-900">
+                    <i class="fas fa-archive group-hover:animate-bounce mr-2 -ml-1"></i>
+                    Archivar trabajo
+                  </button>
                 </div>
               </div>
             </div>
-          @endif
-          @if($work->status === Status::ARCHIVED->value)
-            {{--ABRIR TARBAJO--}}
-            <button wire:click="openWork"
-                    class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-              <i class="fas fa-folder-open group-hover:animate-bounce mr-2 -ml-1"></i>
-              Abrir solicitud de nuevo
-            </button>
-            {{--EDITAR TRBAJO--}}
-            <a href="{{ route('work.edit', $work->id)  }}"
-               class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-teal-700 rounded-lg hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 dark:focus:ring-teal-900">
-              <i class="fa-solid fa-pen-to-square group-hover:animate-bounce mr-2 -ml-1"></i>
-              Editar solicitud
-            </a>
-          @endif
+          </div>
+        @endif
+        @if($work->status === Status::ARCHIVED->value)
+          {{--ABRIR TARBAJO--}}
+          <button wire:click="openWork"
+                  class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+            <i class="fas fa-folder-open group-hover:animate-bounce mr-2 -ml-1"></i>
+            Abrir solicitud de nuevo
+          </button>
+          {{--EDITAR TRBAJO--}}
+          <a href="{{ route('work.edit', $work->id)  }}"
+             class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-teal-700 rounded-lg hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 dark:focus:ring-teal-900">
+            <i class="fa-solid fa-pen-to-square group-hover:animate-bounce mr-2 -ml-1"></i>
+            Editar solicitud
+          </a>
         @endif
 
-        @if($work->status === Status::OPEN->value && Auth::user()->can('work.assign'))
-          <button wire:click="assign"
-                  class="inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-            <i class="fa-regular fa-handshake mr-2 -ml-1"></i>
-            Buscar trabajador
-          </button>
 
-          <button wire:click="$emit('selectItem',{{ $work->id }})"
-                  class="inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-red-500 rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
-            <i class="fas fa-ban group-hover:animate-bounce mr-2 -ml-1"></i>
-            Bloquear
+        @if($assigned?->id === Auth::id() || ($work->status === Status::OPEN->value && $work->client_id === Auth::id()))
+          <button wire:click="complete"
+                  class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900">
+            <i class="fas fa-check-circle group-hover:animate-bounce mr-2 -ml-1"></i>
+            Finalizada
           </button>
         @endif
 
-          @if($assigned?->id === Auth::id())
-            <button wire:click="complete"
-                    class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900">
-              <i class="fas fa-check-circle group-hover:animate-bounce mr-2 -ml-1"></i>
-              Finalizada
+        @if($work->status === Status::FINISHED->value)
+          <div class="flex flex-col gap-y-2">
+            <p class="text-gray-500">El profesional ha marcado esta solicitud como <b>finalizada</b>, ¿estás de
+              acuerdo?
+            </p>
+            <button wire:click="close"
+                    class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 dark:focus:ring-yellow-900">
+              <i class="fas fa-handshake group-hover:animate-bounce mr-2 -ml-1"></i>
+              De acuerdo
             </button>
+          </div>
         @endif
-
-          @if($work->status === Status::FINISHED->value && Auth::id() === $work->client_id)
-            <div class="flex flex-col gap-y-2">
-              <p class="text-gray-500">El profesional ha marcado esta solicitud como <b>finalizada</b>, ¿estás de
-                acuerdo?
-              </p>
-              <button wire:click="close"
-                      class="group inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 dark:focus:ring-yellow-900">
-                <i class="fas fa-handshake group-hover:animate-bounce mr-2 -ml-1"></i>
-                De acuerdo
-              </button>
-            </div>
-          @endif
 
 
       </div>
@@ -224,21 +204,17 @@
         </div>
       @endif
 
-      @if($work->status === Status::OPEN->value && $user->id === $work->client_id)
-        <small class="text-gray-500"> <i class="fa-solid fa-info"></i> &nbsp; Para editar la solicitud debes
-          archivarla
+      @if($work->status === Status::OPEN->value)
+        <small class="text-gray-500"> <i class="fa-solid fa-info"></i> &nbsp; Para editar la solicitud debes archivarla
           primero</small>
+        @livewire('delete-modal', [
+        'title' => 'Bloquear trabajo',
+        'content' => 'Al bloquear el trabajo, se notificará y amonestará al cliente',
+        'modalId' => 'deleteWorkModal',
+        'action' => 'blockWork',
+        'actionName' => 'Bloquear'
+        ])
       @endif
     </div>
   </div>
-
-  @livewire('delete-modal', [
-  'title' => 'Bloquear trabajo',
-  'content' => 'Al bloquear el trabajo, se notificará y amonestará al cliente',
-  'modalId' => 'deleteWorkModal',
-  'action' => 'blockWork',
-  'actionName' => 'Bloquear'
-  ])
-  @livewire('work.assign', ['workId' => $work->id])
-
 </div>
