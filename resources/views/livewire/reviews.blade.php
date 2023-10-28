@@ -6,6 +6,7 @@
     </div>
     @if ($userId !== \Illuminate\Support\Facades\Auth::id())
       <x-button wire:click="create">Opinar &nbsp; <i class="fa-solid fa-pen"></i></x-button>
+      @livewire('create-review-modal')
     @endif
   </div>
   {{--  Add Filters here  --}}
@@ -44,8 +45,4 @@
       @endunless
     @endforeach
   </section>
-
-  @if ($userId !== \Illuminate\Support\Facades\Auth::id())
-    @livewire('create-review-modal')
-  @endif
 </div>
