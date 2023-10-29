@@ -87,7 +87,7 @@
 
         <div class="sm:hidden border-t border-gray-200 dark:border-gray-700"></div>
         <div class="flex flex-col sm:flex-row gap-2 w-full">
-          <button wire:click="assign"
+          <button wire:click="$set('open', true)"
                   class="inline-flex items-center justify-center px-4 py-2.5 text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
             <i class="fa-regular fa-handshake mr-2 -ml-1"></i>
             Buscar trabajador
@@ -100,6 +100,14 @@
         </div>
       </div>
     </div>
+
+    @livewire('delete-modal', [
+        'title' => 'Bloquear trabajo',
+        'content' => 'Al bloquear el trabajo, se notificará y amonestará al cliente',
+        'modalId' => 'deleteWorkModal',
+        'action' => 'blockWork',
+        'actionName' => 'Bloquear'
+    ])
 
     <x-dialog-modal id="assignModal" wire:model="open">
       <x-slot name="title">

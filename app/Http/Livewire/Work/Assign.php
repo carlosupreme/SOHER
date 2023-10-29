@@ -12,7 +12,6 @@ class Assign extends Component
 {
     public $open;
     public $workId;
-    protected $listeners = ['modalAssignOpen'];
     public $workers;
     public $selected = -1;
     public $work;
@@ -46,13 +45,7 @@ class Assign extends Component
         $assigned->user_id = $this->selected;
         $assigned->save();
 
-        return redirect()->route('work.show', $this->workId)->with('flash.banner', 'Solicitud asignada correctamente');
-    }
-
-    public function modalAssignOpen()
-    {
-
-        $this->open = true;
+        return redirect()->route('work.details', $this->workId)->with('flash.banner', 'Solicitud asignada correctamente');
     }
 
     public function render()

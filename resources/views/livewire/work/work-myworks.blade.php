@@ -18,20 +18,24 @@
       <div
           class="flex flex-col gap-y-5 rounded-lg bg-white p-4 text-justify leading-relaxed text-gray-800 shadow-md dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent dark:text-gray-400">
         <div class="flex flex-col gap-x-10 md:flex-row">
+          <div>
+            {!! Status::from($work->status)->tailwindBadge() !!}
+          </div>
           <a href="{{ route('work.show', $work->id) }}"
              class="text-lg font-bold text-gray-950 hover:underline dark:text-gray-100">{{ $work->title }}
           </a>
           <p class="md:whitespace-nowrap">Publicado {{ $work->created_at }}</p>
         </div>
-        <div class="flex items-center gap-x-2">
-          <img class="h-8 w-8 rounded-full object-cover" src="{{ $work->client->profile_photo_url }}"
-               alt="{{ $work->client->name }}"/>
-          <a href="{{ route('user.show', $work->client->id) }}"
-             class="hover:underline dark:text-gray-200">{{ $work->client->name }}</a>
-        </div>
-        <div class="border-t border-gray-200 dark:border-gray-600"></div>
+        @if($work->assigned)
+          <div class="flex items-center gap-x-2">
+            <img class="h-8 w-8 rounded-full object-cover" src="{{ $work->client->profile_photo_url }}"
+                 alt="{{ $work->client->name }}"/>
+            <a href="{{ route('user.show', $work->client->id) }}"
+               class="hover:underline dark:text-gray-200">{{ $work->client->name }}</a>
+          </div>
+          <div class="border-t border-gray-200 dark:border-gray-600"></div>
+        @endif
         <p>{{ $work->description }}</p>
-
         <div class="flex flex-wrap justify-items-start gap-2">
           @foreach (json_decode($work->skills) as $skill)
             <span

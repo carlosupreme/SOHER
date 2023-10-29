@@ -84,6 +84,21 @@
         <p><i class="fa-regular fa-calendar"></i> &nbsp; Fecha solicitada: <b>{{ucfirst($fechaSolicitada)}}</b></p>
       </div>
 
+
+      @if($assigned)
+        <div
+            class="text-gray-800 dark:text-gray-300 dark:bg-gray-700 bg-gray-50 p-4 rounded-3xl flex flex-col gap-y-4">
+          <h4 class="text-center">Trabajo asignado a</h4>
+          <div class="flex gap-x-2 items-center">
+            <img class="rounded-full w-10 h-10 sm:w-16 sm:h-16 object-cover"
+                 src="{{$assigned?->profile_photo_url}}"
+                 alt="{{$assigned?->name}}">
+            <a href="{{route('user.show', ['user' => $assigned->id])}}"
+               class="hover:underline text-xl">{{$assigned?->name}}</a>
+          </div>
+        </div>
+      @endif
+
     </div>
   </div>
 </div>

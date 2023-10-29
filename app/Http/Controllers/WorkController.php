@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Work;
+use App\Work\Domain\Status;
 use Auth;
 
 class WorkController extends Controller
@@ -29,8 +30,8 @@ class WorkController extends Controller
     public function show($id)
     {
         $solicitud = Work::findOrFail($id);
-        if (Auth::id() === $solicitud->client->id && Auth::user()?->can('work.show')) {
-            return view('work.show', ['work' => $solicitud]);
+        if (Auth::id() === $solicitud->client->id) {
+            return view('work.mywork', ['work' => $solicitud]);
         }
 
         abort(404);
@@ -52,9 +53,12 @@ class WorkController extends Controller
 
     public function assign($work)
     {
-        return view('work.assign', [
-            'work' => Work::with('client')->findOrFail($work)
-        ]);
+        if (Work::findOrFail($work)->status === Status::OPEN->value)
+            return view('work.assign', [
+                'work' => Work::with('client')->findOrFail($work)
+            ]);
+
+        return redirect()->route('work.details', $work);
     }
 
     public function assignedIndex()

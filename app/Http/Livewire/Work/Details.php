@@ -25,6 +25,12 @@ class Details extends Component
     }
     public function render()
     {
-        return view('livewire.work.details');
+        $assigned = null;
+
+        if ($a = $this->work->assigned) {
+            $assigned = $a->user;
+        }
+
+        return view('livewire.work.details', compact('assigned'));
     }
 }

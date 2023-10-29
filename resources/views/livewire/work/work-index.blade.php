@@ -18,8 +18,11 @@
     @forelse($works as $work)
       <div
           class="text-gray-800 dark:text-gray-400 leading-relaxed text-justify bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent p-4 rounded-lg shadow-md flex flex-col gap-y-5">
+        <div>
+          {!! Status::from($work->status)->tailwindBadge() !!}
+        </div>
         <div class="flex gap-x-10 flex-col md:flex-row">
-          <a href="{{route($work->status === Status::OPEN->value ? 'work.assign': 'work.details', $work->id)}}"
+          <a href="{{route($work->status === Status::OPEN->value ? 'work.assign' : 'work.details', $work->id)}}"
              class="text-gray-950 dark:text-gray-100 font-bold text-lg hover:underline">{{$work->title}} </a>
           <p class="md:whitespace-nowrap">Publicado {{$work->created_at}}</p>
         </div>
