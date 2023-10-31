@@ -17,10 +17,10 @@ enum Status: string
     {
         return match ($this) {
             self::OPEN => 'bg-blue-500',
-            self::ARCHIVED => 'bg-indigo-800',
-            self::CLOSED => 'bg-yellow-500',
-            self::FINISHED => 'bg-green-500',
             self::PROGRESS => 'bg-gray-500',
+            self::FINISHED => 'bg-green-500',
+            self::CLOSED => 'bg-yellow-500',
+            self::ARCHIVED => 'bg-indigo-800',
             self::BLOCKED => 'bg-red-500'
         };
     }

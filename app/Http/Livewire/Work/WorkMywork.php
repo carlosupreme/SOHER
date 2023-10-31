@@ -49,27 +49,6 @@ class WorkMywork extends Component
         return redirect()->route('work.show', $this->work->id)->with(['flash.bannerStyle' => 'success', 'flash.banner' => 'Solicitud abierta exitosamente']);
     }
 
-    public function blockWork()
-    {
-        $this->work->status = Status::BLOCKED->value;
-        $this->work->save();
-        $this->emit('actionCompleted');
-        Mail::to($this->work->client->email)->send(new WorkBlockedByAdmin($this->work));
-    }
-
-    public function assign()
-    {
-        $this->emit('modalAssignOpen');
-    }
-
-    public function complete()
-    {
-        //pedir firma
-        $this->work->status = Status::FINISHED->value;
-        $this->work->save();
-        return redirect()->route('work.show', $this->work)->with('flash.banner', 'Solicitud completada');
-    }
-
     public function close()
     {
         //pedir firma
@@ -81,7 +60,7 @@ class WorkMywork extends Component
     public function render()
     {
         $assigned = null;
-        if ($this->work->status === Status::PROGRESS->value) {
+        if (in_array($this->work->status, ['progress', 'finished', 'closed'])) {
             $assigned = $this->work->assigned->user;
         }
         return view('livewire.work.work-mywork', compact('assigned'));

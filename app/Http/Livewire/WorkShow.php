@@ -14,12 +14,9 @@ class WorkShow extends Component
     public $work;
     public $clientRate;
     public $fechaSolicitada;
-
     protected $listeners = ['blockWork'];
-
     public $user;
     public $modalAssignOpen = false;
-
 
     public function mount($work)
     {

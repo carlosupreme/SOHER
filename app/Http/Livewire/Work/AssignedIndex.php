@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Work;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AssignedIndex extends Component

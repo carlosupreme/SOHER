@@ -68,12 +68,11 @@ class WorkController extends Controller
 
     public function assignedShow(Work $work)
     {
-        return view('work.show', ['work' => $work]);
+        return view('work.assigned', ['work' => $work]);
     }
 
     public function details(Work $work)
     {
         return view('work.details', ['work' => $work]);
     }
-
 }
