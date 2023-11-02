@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use DragonCode\Support\Facades\Http\Url;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if ($this->app->environment('production')) {
+            Url::forceScheme('https');
+        }
+
         Builder::macro('matching', function ($value, ...$fields) {
             if (!$value || !count($fields)) {
                 return $this;
@@ -35,6 +40,5 @@ class AppServiceProvider extends ServiceProvider
                 $this->where($field, 'like', '%' . $value . '%');
             }
         });
-
     }
 }
