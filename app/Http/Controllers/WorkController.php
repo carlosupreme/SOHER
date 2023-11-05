@@ -8,7 +8,6 @@ use Auth;
 
 class WorkController extends Controller
 {
-
     public function index()
     {
         if (Auth::user()?->can('work.index')) {
