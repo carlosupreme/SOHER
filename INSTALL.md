@@ -2,12 +2,12 @@
 
 1. git clone
 2. composer install
-3. npm i
-4. cp .env-example .env
-   -set database info
-   -set queue_driver=database
-   -set mailer variables
-5. php artisan key:generate
-6. php artisan storage:link
-7. mkdir public/storage/images
-8. php artisan migrate --seed
+3. cp .env-example .env
+   * set database info
+   * set queue_driver = database
+   * set mailer variables
+   * set session driver = cookie
+4. php artisan key:generate
+5. php artisan storage:link
+6. mkdir public/storage/images
+7. php artisan migrate --seed

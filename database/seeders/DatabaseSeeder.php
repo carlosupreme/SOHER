@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(RoleSeeder::class);
-        User::factory(10)->create()->each->syncRoles(Role::pluck('id')->toArray());
-        Work::factory(50)->create();
+        User::factory(3)->create()->each->syncRoles(Role::pluck('id')->toArray());
+        Work::factory(11)->create();
         Review::factory(100)->create();
     }
 }
