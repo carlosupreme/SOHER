@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\User;
-use App\Work\Domain\Status;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,11 +18,11 @@ class WorkFactory extends Factory
             'title' => $this->faker->realText(50),
             'location' => $this->faker->address,
             'description' => $this->faker->paragraph(5),
-            'skills' => json_encode($this->faker->randomElements(['Mecanica', 'Electrica', 'Plomeria', 'Carpinteria', 'Herreria'], 2)),
+            'skills' => json_encode($this->faker->randomElements(['Mecanica', 'Electrica', 'Plomeria', 'Carpinteria', 'Herreria'], 2), JSON_THROW_ON_ERROR),
             'initial_budget' => $initial_budget,
             'final_budget' => $initial_budget + $this->faker->randomNumber(2),
             'deadline' => $this->faker->date,
-            'status' => $this->faker->randomElement(Status::cases()),
+            'status' => 'open',
             'photo' => '/storage/images/' . $this->faker->image('public/storage/images', 640, 480, null, false),
             'created_at' => $this->faker->dateTime
         ];
